@@ -15,9 +15,9 @@ const manifest = new Manifest(dataManifest)
 
 const ressources = {
     'css': manifest.get('app.css'),
+    'react': process.env.REACT_URL as string,
+    'react-dom': process.env.REACTDOM_URL as string,
     'js': manifest.get('app.js'),
-    'react': process.env.REACT_URL,
-    'react-dom': process.env.REACTDOM_URL,
 }
 
 const resourcesLoader = new ResourcesLoader('app')
