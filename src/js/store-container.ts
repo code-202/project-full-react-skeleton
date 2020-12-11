@@ -1,4 +1,3 @@
-import * as path from 'path'
 import { StoreContainer } from 'react-mobx-store-container'
 import Manifest from './manifest'
 import { RemoteCatalog, LocaleStore, SimpleCatalog } from 'react-mobx-intl'

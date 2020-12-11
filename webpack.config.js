@@ -4,7 +4,8 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const WebpackManifestPlugin = require('webpack-manifest-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const HtmlWebpackSkipAssetsPlugin = require('html-webpack-skip-assets-plugin').HtmlWebpackSkipAssetsPlugin;
 const overrides = require('./override');
 
 module.exports = (env, argv) => {
@@ -20,6 +21,7 @@ module.exports = (env, argv) => {
 
         entry: {
             app: './src/js/app.tsx',
+            starter: './src/js/starter.ts',
         },
 
         output: {
@@ -109,13 +111,18 @@ module.exports = (env, argv) => {
                 {from:'src/translations', to:'translations/[name].[hash].[ext]'},
             ], { copyUnmodified: true }),
             new HtmlWebpackPlugin({
-                template: `templates/index.${argv.mode ? 'production' : 'development'}.html`,
+                template: `templates/index.html`,
                 filename: '../index.html',
+            }),
+            new HtmlWebpackSkipAssetsPlugin({
+                excludeAssets: [/app.*/],
             }),
             new webpack.DefinePlugin({
                 'process.env.ENDPOINT': JSON.stringify(''),
                 'process.env.MANIFEST': JSON.stringify(path.resolve(__dirname, 'public/'+dist+'/manifest.json')),
-                'process.env.API_ENDPOINT': process.env.API_ENDPOINT
+                'process.env.API_ENDPOINT': process.env.API_ENDPOINT,
+                'process.env.REACT_URL': JSON.stringify(argv.mode === 'production' ? '/node_modules/react/umd/react.production.min.js' : '/node_modules/react/umd/react.development.js'),
+                'process.env.REACTDOM_URL': JSON.stringify(argv.mode === 'production' ? '/node_modules/react-dom/umd/react-dom.production.min.js' : '/node_modules/react-dom/umd/react-dom.development.js'),
             })
         ]
     }
