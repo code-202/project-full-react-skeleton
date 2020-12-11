@@ -14,6 +14,11 @@ cd admin
 git clone git@github.com:MeuhMeuhConcept/project-full-react-skeleton.git .
 ```
 
+## Optional, checkout to the expected tag
+```
+git checkout tags/<tagname>
+```
+
 ## Remove git dependencies of skeleton
 ```
 rm -rf .git
