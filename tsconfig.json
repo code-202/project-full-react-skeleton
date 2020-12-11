@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "target": "esnext",
+    "module": "esnext",
+    "sourceMap": true,
+    "strict": true,
+    "allowJs": true,
+    "jsx": "react",
+    "moduleResolution": "node",
+    "experimentalDecorators": true
+  },
+  "exclude": ["node_modules", "public", "server-build"]
+}
