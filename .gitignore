@@ -3,4 +3,5 @@ yarn.lock
 
 public/dev
 
-node_modules
+node_modules/*
+!node_modules/.gitkeep
