@@ -11,8 +11,11 @@ import { Container } from './store-container'
 import { StoreContainer } from 'react-mobx-store-container'
 import { Helmet } from 'react-helmet'
 import { StaticRouter } from 'react-router'
+import { Manager } from 'react-mobx-loader'
 
 const PORT = 3006
+
+Manager.Manager.contentStrategy = 'show'
 
 const renderBootstrap = (req: any, context: any, container: StoreContainer) => {
     return ReactDOMServer.renderToString(

@@ -5044,27 +5044,27 @@ react-loadable@^5.5.0:
   dependencies:
     prop-types "^15.5.0"
 
-react-mobx-intl@^1.7.2:
-  version "1.7.2"
-  resolved "https://registry.yarnpkg.com/react-mobx-intl/-/react-mobx-intl-1.7.2.tgz#ee64ad9d236b6d2149170f008bd9e99671a994d4"
-  integrity sha512-ns61lz40XdXrd+oO6wlTfJNf9wiRCvq27gBWc5GazNVijhB3LX7RygBm+wNM/1KIwbu4tAcXe0RIcguz1AUOzQ==
+react-mobx-intl@^1.9.0:
+  version "1.9.0"
+  resolved "https://registry.yarnpkg.com/react-mobx-intl/-/react-mobx-intl-1.9.0.tgz#5b306e7bc57b46f69c4526557bffaeefb9ae8717"
+  integrity sha512-vUrFy/5zk4bNWVWo5yTPOuwMO85j3h1cdHBVqqiiN4kG1nbBfHU2Cxh6yYhr3qphyt+h83oR4epaSB8AWGsjfQ==
   dependencies:
     mobx "^5.15.4"
     mobx-react "^6.1.8"
     react "^16.13.0"
     react-intl "^5.10.6"
-    react-mobx-loader "^1.4.0"
+    react-mobx-loader "^1.6.0"
 
-react-mobx-loader@^1.4.0:
-  version "1.4.0"
-  resolved "https://registry.yarnpkg.com/react-mobx-loader/-/react-mobx-loader-1.4.0.tgz#f150cb0760e77e77746f4ffd17bcdc93b8cbc49e"
-  integrity sha512-CtvyjBBHPHOQmY45Spii+ABCmbDC+S9bWGRYZT/Nbjao3+j0djOMoTKC/IDmSsTNlA+9sfJpNA30oIEHzWV8ag==
+react-mobx-loader@^1.6.0:
+  version "1.6.0"
+  resolved "https://registry.yarnpkg.com/react-mobx-loader/-/react-mobx-loader-1.6.0.tgz#009a0a84beea752e08d402a1f0e6be249ee8f228"
+  integrity sha512-6f7M6JoZtYsLuDK7hkRX0v4FJrRBC4zsH9DUxw4f3l8QCqhbSCDhMOS/Egd6w/kzkk+gSvpAez5LjlXnvtNUGQ==
   dependencies:
     classnames "^2.2.6"
     mobx "^5.15.4"
     mobx-react "^6.1.8"
     react "^16.13.0"
-    rich-agent "^2.1.0"
+    rich-agent "^2.3.0"
 
 react-mobx-store-container@^1.3.0:
   version "1.3.0"
@@ -5407,10 +5407,10 @@ ret@~0.1.10:
   resolved "https://registry.yarnpkg.com/ret/-/ret-0.1.15.tgz#b8a4825d5bdb1fc3f6f53c2bc33f81388681c7bc"
   integrity sha512-TTlYpa+OL+vMMNG24xSlQGEJ3B/RzEfUlLct7b5G/ytav+wPrplCpVMFuwzXbkecJrb6IYo1iFb0S9v37754mg==
 
-rich-agent@^2.1.0:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/rich-agent/-/rich-agent-2.1.0.tgz#80ee1f4b8e91665b93639c3d49a1dc47d268a456"
-  integrity sha512-bJrHjKqc/h1IfFIcWjWzQ9Oe/4ZWGXWE3xdTQn8Y38dNIbwJhBvGweAlVziIGLFsStMZB8TzX5WtaAoQ+uEcfQ==
+rich-agent@^2.3.0:
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/rich-agent/-/rich-agent-2.3.0.tgz#7df1ed25c745e00bc24033a446cc1354f9d6924e"
+  integrity sha512-kPEbOWc3GJazMfM+Xv36Wfoc/pcP7ADOJi5VdgEZEZv8Hn89dXW7ZCWviHO80+fitl6wAMSoYHKDVM1X7BQH1A==
   dependencies:
     superagent "^6.1.0"
 
