@@ -61,6 +61,6 @@
     "react-mobx-store-container": "^1.3.0",
     "react-router-dom": "^5.1.2",
     "reactstrap": "^8.4.1",
-    "rich-agent": "^2.3.0"
+    "rich-agent": "^2.6.0"
   }
 }
