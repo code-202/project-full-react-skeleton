@@ -1,8 +1,8 @@
 import { StoreContainer } from 'react-mobx-store-container'
-import Manifest from './manifest'
+import Manifest, { Catalog } from './manifest'
 import { RemoteCatalog, LocaleStore, SimpleCatalog } from 'react-mobx-intl'
 
-export const Container = (manifestContent: {} = {}) => {
+export const Container = (manifestContent: Catalog = {}) => {
     const container = new StoreContainer()
 
     container.addStore('container', new StoreContainer())

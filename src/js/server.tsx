@@ -10,18 +10,17 @@ import { Agent } from 'rich-agent'
 import { Container } from './store-container'
 import { StoreContainer } from 'react-mobx-store-container'
 import { Helmet } from 'react-helmet'
-import { StaticRouter } from 'react-router'
+import { StaticRouter } from 'react-router-dom/server'
 import { Manager } from 'react-mobx-loader'
 
 const PORT = 3006
 
 Manager.Manager.contentStrategy = 'show'
 
-const renderBootstrap = (req: any, context: any, container: StoreContainer) => {
+const renderBootstrap = (req: any, container: StoreContainer) => {
     return ReactDOMServer.renderToString(
         <StaticRouter
             location={req.url}
-            context={context}
         >
             <Bootstrap container={container}/>
         </StaticRouter>
@@ -40,13 +39,12 @@ app.use(cors({
 }))
 
 const renderIndex = (req: any, res: any) => {
-    const context = {}
     const container = Container(manifest)
 
-    renderBootstrap(req, context, container)
+    renderBootstrap(req, container)
 
     Agent.waitForAll().then((nbRequests: number) => {
-        const bootstrap = renderBootstrap(req, context, container)
+        const bootstrap = renderBootstrap(req, container)
         const helmet = Helmet.renderStatic()
         const dataContainer = JSON.stringify(container.serialize())
 

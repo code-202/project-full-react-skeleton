@@ -1,7 +1,7 @@
 require('../css/app.scss')
 
 import * as React from 'react'
-import { hydrate } from 'react-dom'
+import { hydrateRoot } from 'react-dom/client'
 import Bootstrap from './bootstrap'
 import { BrowserRouter } from 'react-router-dom'
 import { Container } from './store-container'
@@ -14,10 +14,10 @@ if (element) {
     const container = Container(JSON.parse(dataManifest))
     container.deserialize(JSON.parse(dataContainer))
 
-    hydrate(
+    hydrateRoot(
+        element,
         <BrowserRouter>
             <Bootstrap container={container} />
-        </BrowserRouter>,
-        element
+        </BrowserRouter>
     )
 }

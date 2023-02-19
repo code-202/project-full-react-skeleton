@@ -9,7 +9,8 @@ export default class Manifest {
         this._data = data
     }
 
-    public get (key: string, absolute: boolean = true): string {
+    public get (key: string, absolute: boolean = true): string
+    {
 
         return (absolute && process.env.ENDPOINT ? process.env.ENDPOINT : '') + this._data[key]
     }

@@ -1,6 +1,10 @@
 yarn-error.log
 
 public/dev
+public/dist
+public/index.html
+
+server-build
 
 node_modules/*
 !node_modules/.gitkeep

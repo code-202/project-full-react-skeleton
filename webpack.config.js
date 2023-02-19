@@ -2,7 +2,7 @@ const webpack = require('webpack');
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const WebpackManifestPlugin = require('webpack-manifest-plugin');
+const { WebpackManifestPlugin } = require('webpack-manifest-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const HtmlWebpackSkipAssetsPlugin = require('html-webpack-skip-assets-plugin').HtmlWebpackSkipAssetsPlugin;
@@ -94,22 +94,16 @@ module.exports = (env, argv) => {
             new CleanWebpackPlugin({
                 cleanOnceBeforeBuildPatterns: ['js/**/*', 'css/**/*', '!manifest.json'],
             }),
-            new WebpackManifestPlugin({
-                map: (file)=> {
-                    var match = /^(translations\/.*)\.([^.]+)\.json$/.exec(file.name);
-                    if (match) {
-                        file.name = match[1] + '.json';
-                    }
-                    return file;
-                }
-            }),
+            new WebpackManifestPlugin({}),
             new webpack.SourceMapDevToolPlugin({
                 filename: '[file].map',
                 publicPath: '/'+dist+'/'
             }),
-            new CopyWebpackPlugin([
-                {from:'src/translations', to:'translations/[name].[hash].[ext]'},
-            ], { copyUnmodified: true }),
+            new CopyWebpackPlugin({
+                patterns: [
+                    {from:'src/translations', to:'translations/[name].[hash][ext]'},
+                ]
+            }),
             new HtmlWebpackPlugin({
                 template: `templates/index.html`,
                 filename: '../index.html',
