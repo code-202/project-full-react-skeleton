@@ -1,8 +1,8 @@
 {
-  "name": "hastag-front",
+  "name": "project-full-react-skeleton",
   "version": "1.0.0",
   "main": "index.js",
-  "author": "jngermon <jn.germon@gmail.com>",
+  "author": "jngermon <jn.germon@code-202.fr",
   "license": "MIT",
   "devDependencies": {
     "@babel/core": "^7.20.12",
