@@ -3382,18 +3382,18 @@ react-loadable@^5.5.0:
   dependencies:
     prop-types "^15.5.0"
 
-react-mobx-intl@^1.12.0:
-  version "1.12.0"
-  resolved "https://registry.yarnpkg.com/react-mobx-intl/-/react-mobx-intl-1.12.0.tgz#5af7e01ee8e14eed679de4bb16a745380dd8c579"
-  integrity sha512-PTDXaYYton4JMeUjHIKZJV/nuhWtqMfTkFisjAc455gqejDoafOSRCb84g79t+kj1RPwBVuLqC3slt9XhZEFwA==
+react-mobx-intl@^1.15.0:
+  version "1.15.0"
+  resolved "https://registry.yarnpkg.com/react-mobx-intl/-/react-mobx-intl-1.15.0.tgz#c7e1c3f639d586748d292d364096ac56c07c8a30"
+  integrity sha512-rjY+lGVqQ42VsYP7qfFvbjmnPLs5Y+Oia8mBUBpBe9EwpYc31m0v7CCq3VRE4BytHNVec2hA+7oLkqHd5VbeBg==
   dependencies:
     mobx "^6.8.0"
     mobx-react "^7.6.0"
     react "^18.2.0"
     react-intl "^6.2.8"
-    react-mobx-loader "^1.7.6"
+    react-mobx-loader "^1.7.7"
 
-react-mobx-loader@^1.7.6, react-mobx-loader@^1.7.7:
+react-mobx-loader@^1.7.7:
   version "1.7.7"
   resolved "https://registry.yarnpkg.com/react-mobx-loader/-/react-mobx-loader-1.7.7.tgz#ebfa14d37941d7a2b05aaa35cba1cf7f206d336b"
   integrity sha512-AJ4IYDllzvrp6M8VsGoKfiOrIiX8kv0bDIGfHL5KgAxnFAcr5O3E9UcA4rTIgq5KjxZHQuxrkS1F1eI5NlLlRw==

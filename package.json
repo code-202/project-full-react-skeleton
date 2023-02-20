@@ -56,7 +56,7 @@
     "react-helmet": "^6.1.0",
     "react-intl": "^6.2.8",
     "react-loadable": "^5.5.0",
-    "react-mobx-intl": "^1.12.0",
+    "react-mobx-intl": "^1.15.0",
     "react-mobx-loader": "^1.7.7",
     "react-mobx-store-container": "^1.11.0",
     "react-router-dom": "^6.8.1",
