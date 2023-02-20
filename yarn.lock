@@ -3404,10 +3404,10 @@ react-mobx-loader@^1.7.6, react-mobx-loader@^1.7.7:
     react "^18.2.0"
     rich-agent "^2.6.0"
 
-react-mobx-store-container@^1.11.0:
-  version "1.11.0"
-  resolved "https://registry.yarnpkg.com/react-mobx-store-container/-/react-mobx-store-container-1.11.0.tgz#83fb5c314a8325bc2e29a81ea71412edfd615636"
-  integrity sha512-Y0e0t1KMkiUbyeTqqyjlIblhmJ9qJfNVqjoM5Um0M4X8n1BGhnKtenLmxOF+H3waBNTuWpMpQBEU8mzkULYBqg==
+react-mobx-store-container@^1.12.0:
+  version "1.12.0"
+  resolved "https://registry.yarnpkg.com/react-mobx-store-container/-/react-mobx-store-container-1.12.0.tgz#e15bc30ab9b8e7d5cb9b275ef07cb787d38fa3ee"
+  integrity sha512-Rz2PBEScP3XXpqjNxlDIUvD7Pv2iKDnfJ9lBIcuI6KikGE6W/G0xtLES3klyK1txRw+CblEh1hGvtVJAQowcHw==
   dependencies:
     lodash.has "^4.5.2"
     mobx "^6.8.0"
