@@ -3,8 +3,9 @@ const webpack = require('webpack');
 const nodeExternals = require('webpack-node-externals');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const overrides = require('./override');
-
+const excludes = require('./exclude');
 const target = 'node'
+
 module.exports = (env, argv) => {
 
     let dist = 'dev'
@@ -36,9 +37,14 @@ module.exports = (env, argv) => {
                     test: /\.ts(x?)$/,
                     exclude: /node_modules/,
                     use: [
+                        { loader: 'babel-loader' },
                         {
                             loader: 'ts-loader',
-                            options: { silent: true }
+                            options: {
+                                silent: true,
+                                transpileOnly: true,
+                            }
+
                         }
                     ]
                 },
@@ -72,12 +78,17 @@ module.exports = (env, argv) => {
         },
 
         externals: [nodeExternals({
-            allowlist: Object.keys(overrides)
+            allowlist: Object.keys(overrides).concat(excludes),
+            whitelist: [
+                /^@loadable\/component$/,
+                /^react$/,
+                /^react-dom$/,
+            ]
         })],
         plugins: [
             new webpack.DefinePlugin({
-                'process.env.ENDPOINT': JSON.stringify(':3006'),
                 'process.env.MANIFEST': JSON.stringify(path.resolve(__dirname, 'public/'+dist+'/manifest.json')),
+                'process.env.LOADABLE_STATS': JSON.stringify(path.resolve(__dirname, 'public/'+dist+'/loadable-stats.json')),
             })
         ]
     };

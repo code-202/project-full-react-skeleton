@@ -17,7 +17,6 @@ export default class Bootstrap extends React.PureComponent<Props, State> {
     render () {
         return (
             <Provider {...this.props.container.stores}>
-
                 <MobxIntlProvider domain="app">
                     <Layout />
                 </MobxIntlProvider>

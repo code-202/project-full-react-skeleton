@@ -4,14 +4,18 @@ export interface Catalog {
 
 export default class Manifest {
     protected _data: Catalog
+    protected endpoint : string = ''
 
-    constructor (data: Catalog) {
+    constructor (data: Catalog, env: any = {}) {
         this._data = data
+
+        if (env.ENDPOINT) {
+            this.endpoint = env.ENDPOINT
+        }
     }
 
     public get (key: string, absolute: boolean = true): string
     {
-
-        return (absolute && process.env.ENDPOINT ? process.env.ENDPOINT : '') + this._data[key]
+        return (absolute ? this.endpoint : '') + this._data[key]
     }
 }

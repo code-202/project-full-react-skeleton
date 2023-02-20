@@ -7,6 +7,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const HtmlWebpackSkipAssetsPlugin = require('html-webpack-skip-assets-plugin').HtmlWebpackSkipAssetsPlugin;
 const overrides = require('./override');
+const LoadablePlugin = require('@loadable/webpack-plugin');
 
 module.exports = (env, argv) => {
 
@@ -21,7 +22,7 @@ module.exports = (env, argv) => {
 
         entry: {
             app: './src/js/app.tsx',
-            starter: './src/js/starter.ts',
+            //starter: './src/js/starter.ts',
         },
 
         output: {
@@ -46,9 +47,13 @@ module.exports = (env, argv) => {
                     test: /\.ts(x?)$/,
                     exclude: /node_modules/,
                     use: [
+                        { loader: 'babel-loader' },
                         {
                             loader: 'ts-loader',
-                            options: { silent: true }
+                            options: {
+                                silent: true,
+                                transpileOnly: true,
+                            },
                         }
                     ]
                 },
@@ -87,6 +92,7 @@ module.exports = (env, argv) => {
         },
 
         plugins: [
+            new LoadablePlugin(),
             new MiniCssExtractPlugin({
                 filename: "css/[name].[chunkhash].css",
                 chunkFilename: "css/[id].[chunkhash].css"
@@ -107,6 +113,10 @@ module.exports = (env, argv) => {
             new HtmlWebpackPlugin({
                 template: `templates/index.html`,
                 filename: '../index.html',
+                templateParameters: {
+                    'REACT_URL': argv.mode === 'production' ? '/node_modules/react/umd/react.production.min.js' : '/node_modules/react/umd/react.development.js',
+                    'REACTDOM_URL': argv.mode === 'production' ? '/node_modules/react-dom/umd/react-dom.production.min.js' : '/node_modules/react-dom/umd/react-dom.development.js',
+                },
             }),
             new HtmlWebpackSkipAssetsPlugin({
                 excludeAssets: [/app.*/],

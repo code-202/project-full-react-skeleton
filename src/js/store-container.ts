@@ -2,12 +2,12 @@ import { StoreContainer } from 'react-mobx-store-container'
 import Manifest, { Catalog } from './manifest'
 import { RemoteCatalog, LocaleStore, SimpleCatalog } from 'react-mobx-intl'
 
-export const Container = (manifestContent: Catalog = {}) => {
+export const buildContainer = (manifestContent: Catalog = {}, env: any = {}): StoreContainer => {
     const container = new StoreContainer()
 
     container.addStore('container', new StoreContainer())
 
-    const manifest = new Manifest(manifestContent)
+    const manifest = new Manifest(manifestContent, env)
     container.addStore('manifest', manifest)
 
     const localeStore: LocaleStore = new LocaleStore(['fr'])
@@ -16,7 +16,9 @@ export const Container = (manifestContent: Catalog = {}) => {
     for (const rc of frRc) {
         localeStore.addCatalog(rc)
     }
-    localeStore.changeLocale('fr')
+    container.onInit(() => {
+        localeStore.changeLocale('fr')
+    })
 
     container.addStore('locale', localeStore)
 
