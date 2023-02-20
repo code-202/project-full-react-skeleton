@@ -66,7 +66,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-helmet": "^6.1.0",
-    "react-intl": "^6.2.8",
+    "react-intl": "^6.2.9",
     "react-mobx-intl": "^1.15.0",
     "react-mobx-loader": "^1.7.7",
     "react-mobx-store-container": "^1.12.0",
