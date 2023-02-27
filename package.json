@@ -71,7 +71,7 @@
     "react-mobx-store-container": "^1.12.0",
     "react-router-dom": "^6.8.1",
     "reactstrap": "^9.1.6",
-    "rich-agent": "^2.6.0",
+    "rich-agent": "^3.2.1",
     "universal-cookie-express": "^4.0.3"
   }
 }

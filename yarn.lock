@@ -4770,6 +4770,13 @@ rich-agent@^2.6.0:
   dependencies:
     superagent "^8.0.9"
 
+rich-agent@^3.2.1:
+  version "3.2.1"
+  resolved "https://registry.yarnpkg.com/rich-agent/-/rich-agent-3.2.1.tgz#8b2cfbe693826db79b280a4c2aa610102faab7aa"
+  integrity sha512-+erLuQsdPufgFU6CKLFsaAZbDnCPOAhNWikcFPb1ZMbzFg40tQ9PK0h26OWh9aWskP4y8Pdvv6D3woXZxFd9+g==
+  dependencies:
+    superagent "^8.0.9"
+
 rimraf@^2.6.3:
   version "2.7.1"
   resolved "https://registry.yarnpkg.com/rimraf/-/rimraf-2.7.1.tgz#35797f13a7fdadc566142c29d4f07ccad483e3ec"
