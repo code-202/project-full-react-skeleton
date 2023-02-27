@@ -2033,12 +2033,7 @@ chrome-trace-event@^1.0.2:
   dependencies:
     tslib "^1.9.0"
 
-classnames@^2.2.3:
-  version "2.2.6"
-  resolved "https://registry.yarnpkg.com/classnames/-/classnames-2.2.6.tgz#43935bffdd291f326dad0a205309b38d00f650ce"
-  integrity sha512-JR/iSQOSt+LQIWwrwEzJ9uk0xfN3mTVYMwt1Ir5mUcSN6pU+V4zQFFaJsclJbPuAUQH+yfWef6tm7l1quW3C8Q==
-
-classnames@^2.3.2:
+classnames@^2.2.3, classnames@^2.3.2:
   version "2.3.2"
   resolved "https://registry.yarnpkg.com/classnames/-/classnames-2.3.2.tgz#351d813bf0137fcc6a76a16b88208d2560a0d924"
   integrity sha512-CSbhY4cFEJRe6/GQzIk5qXZ4Jeg5pcsP7b5peFSDpffpe1cqjASH/n9UTjBwOp6XpMSTwQ8Za2K5V02ueA7Tmw==
@@ -4501,16 +4496,16 @@ react-mobx-intl@^1.15.0:
     react-intl "^6.2.8"
     react-mobx-loader "^1.7.7"
 
-react-mobx-loader@^1.7.7:
-  version "1.7.7"
-  resolved "https://registry.yarnpkg.com/react-mobx-loader/-/react-mobx-loader-1.7.7.tgz#ebfa14d37941d7a2b05aaa35cba1cf7f206d336b"
-  integrity sha512-AJ4IYDllzvrp6M8VsGoKfiOrIiX8kv0bDIGfHL5KgAxnFAcr5O3E9UcA4rTIgq5KjxZHQuxrkS1F1eI5NlLlRw==
+react-mobx-loader@^1.7.7, react-mobx-loader@^1.9.0:
+  version "1.9.0"
+  resolved "https://registry.yarnpkg.com/react-mobx-loader/-/react-mobx-loader-1.9.0.tgz#5c822746b2f0bc7f588fa75e780e4c535de9765b"
+  integrity sha512-zOZR83s21OPF3bDuAgya2yWpBp2EgXWX+JKeKGDSo7VV6AKNmX3KAJibuOj35JbHzDdidp9ouGn8ISdOPmKgAw==
   dependencies:
     classnames "^2.3.2"
     mobx "^6.8.0"
     mobx-react "^7.6.0"
     react "^18.2.0"
-    rich-agent "^2.6.0"
+    rich-agent "^3.2.1"
 
 react-mobx-store-container@^1.12.0:
   version "1.12.0"
@@ -4767,6 +4762,13 @@ rich-agent@^2.6.0:
   version "2.6.0"
   resolved "https://registry.yarnpkg.com/rich-agent/-/rich-agent-2.6.0.tgz#cfd9f1279efe4915ff89647cb91b2c0ba8056ae0"
   integrity sha512-BsfbYl3kc2da57avmQ9v0ZrIKq6ZovDvCrxQbRVdv4g75egt0wo/bnX6iqeJcg49F2PYlISMme3XU8h30iuCQg==
+  dependencies:
+    superagent "^8.0.9"
+
+rich-agent@^3.2.1:
+  version "3.2.1"
+  resolved "https://registry.yarnpkg.com/rich-agent/-/rich-agent-3.2.1.tgz#8b2cfbe693826db79b280a4c2aa610102faab7aa"
+  integrity sha512-+erLuQsdPufgFU6CKLFsaAZbDnCPOAhNWikcFPb1ZMbzFg40tQ9PK0h26OWh9aWskP4y8Pdvv6D3woXZxFd9+g==
   dependencies:
     superagent "^8.0.9"
 
