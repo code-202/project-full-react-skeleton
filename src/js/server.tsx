@@ -19,7 +19,7 @@ const statsFile = process.env.LOADABLE_STATS ? process.env.LOADABLE_STATS : ''
 
 const PORT = 3006
 
-Manager.Manager.contentStrategy = 'show'
+Manager.Manager.contentStrategy = 'wait'
 
 const renderBootstrap = (req: any, container: StoreContainer, maxRendition: number = 5): Promise<{html: string, extractor: ChunkExtractor}> => {
     return new Promise((resolve, reject) => {
@@ -64,12 +64,12 @@ const app = express()
 app.use(cookiesMiddleware())
 
 app.use(cors({
-    origin: env ? env.API_HOST : ''
+    origin: env && env.CORS ? env.CORS.split(',') : ''
 }))
 
 const renderIndex = (req: any, res: any) => {
 
-    const e = Object.assign ({/* cookies: req.headers.cookie */}, env)
+    const e = Object.assign ({/* cookies: req.universalCookies.getAll() */}, env)
 
     const container = buildContainer(manifest, e)
     container.init()
