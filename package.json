@@ -69,7 +69,7 @@
     "react-mobx-intl": "^1.16.0",
     "react-mobx-loader": "^1.9.0",
     "react-mobx-store-container": "^1.12.0",
-    "react-router-dom": "^6.8.1",
+    "react-router-dom": "^6.8.2",
     "reactstrap": "^9.1.6",
     "rich-agent": "^3.2.1",
     "universal-cookie-express": "^4.0.3"
