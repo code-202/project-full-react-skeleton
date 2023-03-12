@@ -51,6 +51,12 @@
     "start": "node ./server-build/index.js"
   },
   "dependencies": {
+    "@code-202/agent": "^4.0.0",
+    "@code-202/intl": "^2.2.3",
+    "@code-202/kernel": "^1.7.1",
+    "@code-202/loader": "^2.0.1",
+    "@code-202/serializer": "^1.0.0",
+    "@code-202/starter": "^1.2.0",
     "@loadable/component": "^5.15.3",
     "@loadable/server": "^5.15.3",
     "@mdi/font": "^7.1.96",
@@ -60,18 +66,13 @@
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
-    "js-starter": "^1.2.0",
     "mobx": "^6.8.0",
     "mobx-react": "^7.6.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-helmet": "^6.1.0",
-    "react-mobx-intl": "^1.16.0",
-    "react-mobx-loader": "^1.9.0",
-    "react-mobx-store-container": "^1.12.0",
     "react-router-dom": "^6.8.1",
     "reactstrap": "^9.1.6",
-    "rich-agent": "^3.2.1",
     "universal-cookie-express": "^4.0.3"
   }
 }

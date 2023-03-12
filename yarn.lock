@@ -968,6 +968,59 @@
     "@babel/helper-validator-identifier" "^7.19.1"
     to-fast-properties "^2.0.0"
 
+"@code-202/agent@^4.0.0":
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/@code-202/agent/-/agent-4.0.0.tgz#e0b0ae5fca8c04e935ed8d9015100f4066c29624"
+  integrity sha512-egAEF+9htyAGta4PFmtT1tge0X6c1wlqm7QYSGnMwNAW6CEo+elB0dfYtwfsj+9NliIOk1ZLEFzNhf6X+hXT+w==
+  dependencies:
+    "@code-202/serializer" "^1.0.0"
+    superagent "^8.0.9"
+
+"@code-202/intl@^2.2.3":
+  version "2.2.3"
+  resolved "https://registry.yarnpkg.com/@code-202/intl/-/intl-2.2.3.tgz#b56c90f8a0923fa7a402a7c27cd9f9b128a3e47e"
+  integrity sha512-grQ/csTnNuEmvXpFGcsKOS+ciFQINKL/APHTuUmkATG/ZI1jr9dolK60VnfP8c4lWO7iV5/jp0bIDlN4M6yBJQ==
+  dependencies:
+    "@code-202/kernel" "^1.7.0"
+    "@code-202/loader" "^2.0.1"
+    "@code-202/serializer" "^1.0.0"
+    mobx "^6.8.0"
+    mobx-react "^7.6.0"
+    react "^18.2.0"
+    react-dom "^18.2.0"
+    react-intl "^6.2.10"
+
+"@code-202/kernel@^1.7.0", "@code-202/kernel@^1.7.1":
+  version "1.7.1"
+  resolved "https://registry.yarnpkg.com/@code-202/kernel/-/kernel-1.7.1.tgz#a8edc1c74e9b5f8cc5042c7d9bde30c7fb1badb2"
+  integrity sha512-L5R8HzxrsWAvtuz8pbnUKhx83sTJKsiwuv3t6O5Cs78+aKBNj0MQ/EY2vagdvEtC2mR+hMBG2X/aVD4L+dmwVg==
+  dependencies:
+    "@code-202/serializer" "^1.0.0"
+    lodash.has "^4.5.2"
+    mobx "^6.8.0"
+
+"@code-202/loader@^2.0.1":
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/@code-202/loader/-/loader-2.0.1.tgz#c9ed44f286bc36ed9642855c1cb84c73df1c1e57"
+  integrity sha512-PzJNdltp+YeLt+uKTgJlvLXORq3ylUcwuBJKN8LiRf8D7W8s6HdwdJSqD19UNZLEvMaSMb0s74xEzWrLatqb+Q==
+  dependencies:
+    "@code-202/agent" "^4.0.0"
+    "@code-202/serializer" "^1.0.0"
+    classnames "^2.3.2"
+    mobx "^6.8.0"
+    mobx-react "^7.6.0"
+    react "^18.2.0"
+
+"@code-202/serializer@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@code-202/serializer/-/serializer-1.0.0.tgz#782f06ead1225bf2243f72acafd6772bd543eb72"
+  integrity sha512-Wi3qN4oSg3dOuW18GWuMcxeo+OZBXS0h7GZqiivkZZD5+5T1JPBWq+dIqo+pDBIcz+HYIx7lniKCGXktgl+/Tg==
+
+"@code-202/starter@^1.2.0":
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/@code-202/starter/-/starter-1.2.0.tgz#11ae3e938baaf76472fd62124a38a36dca85702e"
+  integrity sha512-ixzwY2S9xYlPXU0tV20im48A09ghw8GF+lMsYFvtEK8hJyE04Jeoyh3haguUIiyGCySbHegpY4KMYaOuJJkm8w==
+
 "@discoveryjs/json-ext@^0.5.0":
   version "0.5.7"
   resolved "https://registry.yarnpkg.com/@discoveryjs/json-ext/-/json-ext-0.5.7.tgz#1d572bfbbe14b7704e0ba0f39b74815b84870d70"
@@ -3644,11 +3697,6 @@ js-sdsl@^4.1.4:
   resolved "https://registry.yarnpkg.com/js-sdsl/-/js-sdsl-4.3.0.tgz#aeefe32a451f7af88425b11fdb5f58c90ae1d711"
   integrity sha512-mifzlm2+5nZ+lEcLJMoBK0/IH/bDg8XnJfd/Wq6IP+xoCjLZsTOnV2QpxlVbX9bMnkl5PdEjNtBJ9Cj1NjifhQ==
 
-js-starter@^1.2.0:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/js-starter/-/js-starter-1.2.0.tgz#afa6d1634b78e599df12fd8e709c494905f88521"
-  integrity sha512-I+RCndS50Bmk/2+ubTfWiS32E1V5fD0H1bRkhzafwuNXGPbD3OyGMcTibHdyNUO0OdA5/XAU+T/cbtW80orc5g==
-
 "js-tokens@^3.0.0 || ^4.0.0", js-tokens@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/js-tokens/-/js-tokens-4.0.0.tgz#19203fb59991df98e3a287050d4647cdeaf32499"
@@ -4407,10 +4455,17 @@ punycode@^2.1.0:
   resolved "https://registry.yarnpkg.com/punycode/-/punycode-2.1.1.tgz#b58b010ac40c22c5657616c8d2c2c02c7bf479ec"
   integrity sha512-XRsRjdf+j5ml+y/6GKHPZbrF/8p2Yga0JPtdqTIY2Xe5ohJPD9saDJJLPvp9+NSBprVvevdXZybnj2cv8OEd0A==
 
-qs@6.11.0, qs@^6.11.0:
+qs@6.11.0:
   version "6.11.0"
   resolved "https://registry.yarnpkg.com/qs/-/qs-6.11.0.tgz#fd0d963446f7a65e1367e01abd85429453f0c37a"
   integrity sha512-MvjoMCJwEarSbUYk5O+nmoSzSutSsTwF85zcHPQ9OrlFoZOYIjaqBAJIqIXjptyD5vThxGq52Xu/MaJzRkIk4Q==
+  dependencies:
+    side-channel "^1.0.4"
+
+qs@^6.11.0:
+  version "6.11.1"
+  resolved "https://registry.yarnpkg.com/qs/-/qs-6.11.1.tgz#6c29dff97f0c0060765911ba65cbc9764186109f"
+  integrity sha512-0wsrzgTz/kAVIeuxSjnpGC56rzYtr6JT/2BwEvMaPhFIoYa1aGO8LbzuU1R0uUYQkLpWBTOj0l/CLAJB64J6nQ==
   dependencies:
     side-channel "^1.0.4"
 
@@ -4464,7 +4519,7 @@ react-helmet@^6.1.0:
     react-fast-compare "^3.1.1"
     react-side-effect "^2.1.0"
 
-react-intl@^6.2.9:
+react-intl@^6.2.10:
   version "6.2.10"
   resolved "https://registry.yarnpkg.com/react-intl/-/react-intl-6.2.10.tgz#586ba261b3ff67be09072fefdee2ef58497e0ea2"
   integrity sha512-l2TpskkFR0OzQnq7ChiJ5ZX23USZSzpKOcaR9MYC4UOHE9bT4kQ5JXXolgkq3tiOlvseEOzUCerlzn886AX9Yg==
@@ -4489,38 +4544,6 @@ react-lifecycles-compat@^3.0.4:
   version "3.0.4"
   resolved "https://registry.yarnpkg.com/react-lifecycles-compat/-/react-lifecycles-compat-3.0.4.tgz#4f1a273afdfc8f3488a8c516bfda78f872352362"
   integrity sha512-fBASbA6LnOU9dOU2eW7aQ8xmYBSXUIWr+UmF9b1efZBazGNO+rcXT/icdKnYm2pTwcRylVUYwW7H1PHfLekVzA==
-
-react-mobx-intl@^1.16.0:
-  version "1.16.0"
-  resolved "https://registry.yarnpkg.com/react-mobx-intl/-/react-mobx-intl-1.16.0.tgz#05a9666171b463af39c55d5cc98bc2b601ea3db2"
-  integrity sha512-qxSQ74gGP88U1qEvFybQMxnD0KEvA40wW9qWdNJrT1KRfaGHlFkoetjs/1un3BAs0oad3tKwAUBgIfVjf+GUmw==
-  dependencies:
-    mobx "^6.8.0"
-    mobx-react "^7.6.0"
-    react "^18.2.0"
-    react-intl "^6.2.9"
-    react-mobx-loader "^1.8.0"
-
-react-mobx-loader@^1.8.0, react-mobx-loader@^1.9.0:
-  version "1.9.0"
-  resolved "https://registry.yarnpkg.com/react-mobx-loader/-/react-mobx-loader-1.9.0.tgz#5c822746b2f0bc7f588fa75e780e4c535de9765b"
-  integrity sha512-zOZR83s21OPF3bDuAgya2yWpBp2EgXWX+JKeKGDSo7VV6AKNmX3KAJibuOj35JbHzDdidp9ouGn8ISdOPmKgAw==
-  dependencies:
-    classnames "^2.3.2"
-    mobx "^6.8.0"
-    mobx-react "^7.6.0"
-    react "^18.2.0"
-    rich-agent "^3.2.1"
-
-react-mobx-store-container@^1.12.0:
-  version "1.12.0"
-  resolved "https://registry.yarnpkg.com/react-mobx-store-container/-/react-mobx-store-container-1.12.0.tgz#e15bc30ab9b8e7d5cb9b275ef07cb787d38fa3ee"
-  integrity sha512-Rz2PBEScP3XXpqjNxlDIUvD7Pv2iKDnfJ9lBIcuI6KikGE6W/G0xtLES3klyK1txRw+CblEh1hGvtVJAQowcHw==
-  dependencies:
-    lodash.has "^4.5.2"
-    mobx "^6.8.0"
-    mobx-react "^7.6.0"
-    react "^18.2.0"
 
 react-popper@^1.3.6:
   version "1.3.7"
@@ -4762,13 +4785,6 @@ reusify@^1.0.4:
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/reusify/-/reusify-1.0.4.tgz#90da382b1e126efc02146e90845a88db12925d76"
   integrity sha512-U9nH88a3fc/ekCF1l0/UP1IosiuIjyTh7hBvXVMHYgVcfGvt897Xguj2UOLDeI5BG2m7/uwyaLVT6fbtCwTyzw==
-
-rich-agent@^3.2.1:
-  version "3.2.1"
-  resolved "https://registry.yarnpkg.com/rich-agent/-/rich-agent-3.2.1.tgz#8b2cfbe693826db79b280a4c2aa610102faab7aa"
-  integrity sha512-+erLuQsdPufgFU6CKLFsaAZbDnCPOAhNWikcFPb1ZMbzFg40tQ9PK0h26OWh9aWskP4y8Pdvv6D3woXZxFd9+g==
-  dependencies:
-    superagent "^8.0.9"
 
 rimraf@^2.6.3:
   version "2.7.1"

@@ -1,19 +1,20 @@
+import { Agent } from '@code-202/agent'
+import { Container, Environment, Kernel, Manifest, setKernel } from '@code-202/kernel'
+import { Manager } from '@code-202/loader'
+import { buildDefaultSerializer } from '@code-202/serializer'
+import { ChunkExtractor } from '@loadable/server'
 import * as cors from 'cors'
+import { config } from 'dotenv'
 import * as express from 'express'
 import * as fs from 'fs'
-import { ChunkExtractor } from '@loadable/server'
 import * as path from 'path'
 import * as React from 'react'
 import * as ReactDOMServer from 'react-dom/server'
-import Bootstrap from './bootstrap'
-import { Agent } from 'rich-agent'
-import { buildContainer } from './store-container'
-import { StoreContainer } from 'react-mobx-store-container'
 import { Helmet } from 'react-helmet'
 import { StaticRouter } from 'react-router-dom/server'
-import { Manager } from 'react-mobx-loader'
-import { config } from 'dotenv'
 import cookiesMiddleware from 'universal-cookie-express'
+import Bootstrap from './bootstrap'
+import { buildContainer } from './container'
 
 const statsFile = process.env.LOADABLE_STATS ? process.env.LOADABLE_STATS : ''
 
@@ -21,7 +22,7 @@ const PORT = 3006
 
 Manager.Manager.contentStrategy = 'wait'
 
-const renderBootstrap = (req: any, container: StoreContainer, maxRendition: number = 5): Promise<{html: string, extractor: ChunkExtractor}> => {
+const renderBootstrap = (req: any, maxRendition: number = 5): Promise<{html: string, extractor: ChunkExtractor}> => {
     return new Promise((resolve, reject) => {
         const extractor = new ChunkExtractor({
             statsFile,
@@ -33,7 +34,7 @@ const renderBootstrap = (req: any, container: StoreContainer, maxRendition: numb
             <StaticRouter
                 location={req.url}
             >
-                <Bootstrap container={container}/>
+                <Bootstrap/>
             </StaticRouter>
             )
         )
@@ -44,45 +45,53 @@ const renderBootstrap = (req: any, container: StoreContainer, maxRendition: numb
                 return
             }
 
-            renderBootstrap(req, container, --maxRendition).then((bootstrap) => {
+            renderBootstrap(req, --maxRendition).then((bootstrap) => {
                 resolve(bootstrap)
             })
         })
     })
 }
 
-const manifestFile: string = process.env.MANIFEST as string
+const environment = new Environment<'ENDPOINT' | 'CORS'>({}, config().parsed as Record<string, string>)
 
-const manifest = JSON.parse(fs.readFileSync(manifestFile, 'utf8'))
-const stringManifest = JSON.stringify(manifest)
-
-const env = config().parsed
-const stringEnv = JSON.stringify(env)
+const manifestFile = process.env.MANIFEST as string
+const manifestData = JSON.parse(fs.readFileSync(manifestFile, 'utf8'))
+const manifest = new Manifest(manifestData, environment.get('ENDPOINT')+'')
 
 const app = express()
 
 app.use(cookiesMiddleware())
 
+const envCors = environment.get('CORS')
 app.use(cors({
-    origin: env && env.CORS ? env.CORS.split(',') : ''
+    origin: envCors ? envCors.split(',') : ''
 }))
+
+const serializer = buildDefaultSerializer()
 
 const renderIndex = (req: any, res: any) => {
 
-    const e = Object.assign ({/* cookies: req.universalCookies.getAll() */}, env)
+    const container = new Container()
+    const kernel = new Kernel(container, environment, manifest)
 
-    const container = buildContainer(manifest, e)
+    setKernel(kernel, true)
+
+    buildContainer()
     container.init()
 
     /*
     if (req.universalCookies.get('api-token')) {
-        container.get('endpointStore').loadTokenFromString(req.universalCookies.get('api-token'))
+        container.get('security').loadTokenFromString(req.universalCookies.get('api-token'))
     }
     */
 
-    renderBootstrap(req, container).then((bootstrap) => {
+    renderBootstrap(req).then((bootstrap) => {
+
         const helmet = Helmet.renderStatic()
-        const dataContainer = JSON.stringify(container.serialize())
+
+        const serializedContainer = serializer.serialize(kernel.container, 'json')
+        const serializedManifest = serializer.serialize(kernel.manifest, 'json')
+        const serializedEnvironment = serializer.serialize(kernel.environment, 'json')
 
         const indexFile = path.resolve('./public/index.html')
 
@@ -92,8 +101,7 @@ const renderIndex = (req: any, res: any) => {
                 return res.status(500).send('Oops, better luck next time!')
             }
 
-            let datas = `<script>window.__INITIAL_STATE__ = { dataContainer: ${dataContainer}, dataManifest: ${stringManifest}}</script>`
-            datas += `<script>window.__ENV__ = ${stringEnv}</script>`
+            const datas = `<script>window.__INITIAL_STATE__ = { container: '${serializedContainer}', manifest: '${serializedManifest}', environment: '${serializedEnvironment}' }</script>`
 
             data = data.replace('<div id="app"></div>', `<div id="app">${bootstrap.html}</div>`)
             data = data.replace('<title></title>', helmet.title.toString())
@@ -111,7 +119,7 @@ const renderIndex = (req: any, res: any) => {
 
 app.get('/', renderIndex);
 
-app.use(express.static('./public'));
+app.use(express.static('./public', {fallthrough: false}))
 
 app.get('/*', renderIndex);
 

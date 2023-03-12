@@ -1,20 +1,20 @@
 require('../css/app.scss')
 
+import { setKernel, createEmptyKernel } from '@code-202/kernel'
+import { buildDefaultDeserializer, Decoder } from '@code-202/serializer'
+import { loadableReady } from '@loadable/component'
 import * as React from 'react'
 import { hydrateRoot } from 'react-dom/client'
-import Bootstrap from './bootstrap'
 import { BrowserRouter } from 'react-router-dom'
-import { buildContainer } from './store-container'
-import { loadableReady } from '@loadable/component'
+import Bootstrap from './bootstrap'
+import { buildContainer } from './container'
 
 declare global {
     interface Window {
         __INITIAL_STATE__: {
-            dataContainer: any
-            dataManifest: Record<string, string>
-        },
-        __ENV__: {
-            'ENDPOINT': string
+            container: string,
+            manifest: string,
+            environment: string
         }
     }
 }
@@ -23,14 +23,23 @@ const bootstrap = (): void => {
     const element: Element = document.getElementById('app') as Element
 
     if (element) {
-        const container = buildContainer(window.__INITIAL_STATE__.dataManifest, window.__ENV__)
-        container.deserialize(window.__INITIAL_STATE__.dataContainer)
-        container.init()
+        const kernel = createEmptyKernel()
+        const deserializer = buildDefaultDeserializer()
+
+        setKernel(kernel)
+
+        deserializer.deserialize(kernel.manifest, window.__INITIAL_STATE__.manifest, 'json')
+        deserializer.deserialize(kernel.environment, window.__INITIAL_STATE__.environment, 'json')
+
+        buildContainer()
+
+        deserializer.deserialize(kernel.container, window.__INITIAL_STATE__.container, 'json')
+        kernel.container.init()
 
         hydrateRoot(
             element,
             <BrowserRouter>
-                <Bootstrap container={container} />
+                <Bootstrap/>
             </BrowserRouter>
         )
     }
