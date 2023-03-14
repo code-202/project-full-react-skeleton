@@ -9,6 +9,8 @@ const HtmlWebpackSkipAssetsPlugin = require('html-webpack-skip-assets-plugin').H
 const overrides = require('./override');
 const LoadablePlugin = require('@loadable/webpack-plugin');
 
+const ssr = false
+
 module.exports = (env, argv) => {
 
     let dist = 'dev'
@@ -20,9 +22,11 @@ module.exports = (env, argv) => {
     return {
         mode: "development",
 
-        entry: {
+        entry: ssr ? {
+            app: './src/js/app.ssr.tsx',
+        } : {
             app: './src/js/app.tsx',
-            //starter: './src/js/starter.ts',
+            starter: './src/js/starter.ts',
         },
 
         output: {
@@ -31,7 +35,7 @@ module.exports = (env, argv) => {
             filename: "js/[name].[chunkhash].js",
             chunkFilename: 'js/[name].[chunkhash].bundle.js',
             libraryTarget: "umd", // universal module definition
-            publicPath: '/'+dist+'/'
+            publicPath: '/static/'+dist+'/'
         },
 
         resolve: {
@@ -100,10 +104,10 @@ module.exports = (env, argv) => {
             new CleanWebpackPlugin({
                 cleanOnceBeforeBuildPatterns: ['js/**/*', 'css/**/*', '!manifest.json'],
             }),
-            new WebpackManifestPlugin({}),
+            new WebpackManifestPlugin(),
             new webpack.SourceMapDevToolPlugin({
                 filename: '[file].map',
-                publicPath: '/'+dist+'/'
+                publicPath: '/static/'+dist+'/'
             }),
             new CopyWebpackPlugin({
                 patterns: [
@@ -111,7 +115,7 @@ module.exports = (env, argv) => {
                 ]
             }),
             new HtmlWebpackPlugin({
-                template: `templates/index.html`,
+                template: `templates/index${ssr ? '.ssr' : ''}.html`,
                 filename: '../index.html',
                 templateParameters: {
                     'REACT_URL': argv.mode === 'production' ? '/node_modules/react/umd/react.production.min.js' : '/node_modules/react/umd/react.development.js',

@@ -976,12 +976,12 @@
     "@code-202/serializer" "^1.0.0"
     superagent "^8.0.9"
 
-"@code-202/intl@^2.2.3":
-  version "2.2.3"
-  resolved "https://registry.yarnpkg.com/@code-202/intl/-/intl-2.2.3.tgz#b56c90f8a0923fa7a402a7c27cd9f9b128a3e47e"
-  integrity sha512-grQ/csTnNuEmvXpFGcsKOS+ciFQINKL/APHTuUmkATG/ZI1jr9dolK60VnfP8c4lWO7iV5/jp0bIDlN4M6yBJQ==
+"@code-202/intl@^2.2.4":
+  version "2.2.4"
+  resolved "https://registry.yarnpkg.com/@code-202/intl/-/intl-2.2.4.tgz#4e83219cf29e26718ffc55574a050e15e2c5967b"
+  integrity sha512-biPLimQAJP1QM2wY+tnkyMPZNUZWV8nvSwchP78/gULyLfClBDTOCE1U/q4Q4MI+7fX0w6841bL1lKi1do+IfA==
   dependencies:
-    "@code-202/kernel" "^1.7.0"
+    "@code-202/kernel" "^2.0.0"
     "@code-202/loader" "^2.0.1"
     "@code-202/serializer" "^1.0.0"
     mobx "^6.8.0"
@@ -990,22 +990,23 @@
     react-dom "^18.2.0"
     react-intl "^6.2.10"
 
-"@code-202/kernel@^1.7.0", "@code-202/kernel@^1.7.1":
-  version "1.7.1"
-  resolved "https://registry.yarnpkg.com/@code-202/kernel/-/kernel-1.7.1.tgz#a8edc1c74e9b5f8cc5042c7d9bde30c7fb1badb2"
-  integrity sha512-L5R8HzxrsWAvtuz8pbnUKhx83sTJKsiwuv3t6O5Cs78+aKBNj0MQ/EY2vagdvEtC2mR+hMBG2X/aVD4L+dmwVg==
+"@code-202/kernel@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@code-202/kernel/-/kernel-2.0.0.tgz#b06d438b2a3a8b06f242aa0e5ea2efb0f5ea7dd0"
+  integrity sha512-zx9AdXp0BYHBV6QP+6k5KnSVnSO6OGZKF+wPFfq0kS8z//x6tV/SZ446KP9qp2V/R/KYhZ1UGRvCj9sFeyfMMA==
   dependencies:
     "@code-202/serializer" "^1.0.0"
     lodash.has "^4.5.2"
-    mobx "^6.8.0"
 
-"@code-202/loader@^2.0.1":
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/@code-202/loader/-/loader-2.0.1.tgz#c9ed44f286bc36ed9642855c1cb84c73df1c1e57"
-  integrity sha512-PzJNdltp+YeLt+uKTgJlvLXORq3ylUcwuBJKN8LiRf8D7W8s6HdwdJSqD19UNZLEvMaSMb0s74xEzWrLatqb+Q==
+"@code-202/loader@^2.0.1", "@code-202/loader@^2.1.1":
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/@code-202/loader/-/loader-2.1.1.tgz#5606c448369047d5512010dccfd34d3457fd9ddd"
+  integrity sha512-u8LxvlgsGbceOqZM4dn68oZZjs7gOMGIy2mN9qQGUSkA6zyfBByXpXTriEqcgycBLj9tBVaZK6QanFOOhXJ+LA==
   dependencies:
     "@code-202/agent" "^4.0.0"
     "@code-202/serializer" "^1.0.0"
+    "@mdi/js" "^7.1.96"
+    "@mdi/react" "^1.6.1"
     classnames "^2.3.2"
     mobx "^6.8.0"
     mobx-react "^7.6.0"
@@ -1207,11 +1208,6 @@
   integrity sha512-+o87jPHn3E8sqW0aBA+qwKuG8JyIfMGdz3zECv0t/JF0KHhxXtzIlTiqzlIYc5ZpFs/vKSQfjzGIR5tPJjoXDw==
   dependencies:
     make-dir "^3.0.2"
-
-"@mdi/font@^7.1.96":
-  version "7.1.96"
-  resolved "https://registry.yarnpkg.com/@mdi/font/-/font-7.1.96.tgz#211ca4acfa31964278e5085de595e8c73967d400"
-  integrity sha512-Imag6npmfkBDi2Ze2jiZVAPTDIKLxhz2Sx82xJ2zctyAU5LYJejLI5ChnDwiD9bMkQfVuzEsI98Q8toHyC+HCg==
 
 "@mdi/js@^7.1.96":
   version "7.1.96"

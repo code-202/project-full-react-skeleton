@@ -37,6 +37,9 @@ make console
 yarn install
 ```
 
+## Server-Side Rendering
+To enable SSR, set `ssr` variable to `true` in both webpack config files
+
 ## Build sources
 ```
 yarn build

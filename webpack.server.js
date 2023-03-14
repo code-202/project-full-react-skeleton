@@ -6,6 +6,8 @@ const overrides = require('./override');
 const excludes = require('./exclude');
 const target = 'node'
 
+const ssr = false
+
 module.exports = (env, argv) => {
 
     let dist = 'dev'
@@ -15,7 +17,7 @@ module.exports = (env, argv) => {
     }
 
     return {
-        entry: './src/js/server.tsx',
+        entry: `./src/js/server${ssr ? '.ssr' : ''}.tsx`,
 
         target: 'node',
         target,

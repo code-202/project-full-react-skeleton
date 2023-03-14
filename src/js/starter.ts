@@ -1,22 +1,27 @@
 require('../css/starter.scss')
 
-import { ResourcesLoader } from 'js-starter'
-import Manifest from './manifest'
+import { ResourcesLoader } from '@code-202/starter'
+import { Manifest } from '@code-202/kernel'
+import { buildDefaultDeserializer } from '@code-202/serializer'
 
-const element: Element = document.getElementById('app') as Element
-
-let dataManifest = {}
-
-if (element) {
-    dataManifest = JSON.parse(unescape(element.getAttribute('data-manifest') || ''))
+declare global {
+    interface Window {
+        __INITIAL_STATE__: {
+            manifest: string,
+            environment: string
+        }
+    }
 }
 
-const manifest = new Manifest(dataManifest)
+const deserializer = buildDefaultDeserializer()
+
+const manifest = new Manifest({}, '')
+deserializer.deserialize(manifest, window.__INITIAL_STATE__.manifest, 'json')
 
 const ressources = {
     'css': manifest.get('app.css'),
-    'react': process.env.REACT_URL as string,
-    'react-dom': process.env.REACTDOM_URL as string,
+    'react': '/static' + process.env.REACT_URL as string,
+    'react-dom': '/static' + process.env.REACTDOM_URL as string,
     'js': manifest.get('app.js'),
 }
 

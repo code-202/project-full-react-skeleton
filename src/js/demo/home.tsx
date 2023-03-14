@@ -9,7 +9,7 @@ interface Props {}
 interface State {}
 
 export default class Home extends React.PureComponent<Props, State> {
-    render () {
+    render (): React.ReactNode {
         return (
             <>
                 <div className="alert alert-success text-center">

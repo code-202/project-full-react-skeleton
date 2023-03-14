@@ -1,10 +1,12 @@
 import * as React from 'react'
-import { FormattedMessage } from 'react-intl'
 import { Routes, Route, Outlet, Link } from 'react-router-dom'
 import loadable from '@loadable/component'
+import { LoadingScreen } from '@code-202/loader'
 
-const Home = loadable(() => import('./home'))
-const About = loadable(() => import('./about'))
+const fallback = <LoadingScreen size="xl"/>
+
+const Home = loadable(() => import('./home'), {fallback})
+const About = loadable(() => import('./about'), {fallback})
 
 interface Props {}
 
@@ -26,20 +28,20 @@ export default class Layout extends React.PureComponent<Props, State> {
 function Layout2() {
   return (
     <div>
-      <nav>
-        <ul>
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li>
-            <Link to="/about">About</Link>
-          </li>
-        </ul>
-      </nav>
+        <nav>
+            <ul>
+                <li>
+                    <Link to="/">Home</Link>
+                </li>
+                <li>
+                    <Link to="/about">About</Link>
+                </li>
+            </ul>
+        </nav>
 
-      <hr />
+        <hr />
 
-      <Outlet />
+        <Outlet />
     </div>
   );
 }
