@@ -31,7 +31,7 @@ const bootstrap = (): void => {
         deserializer.deserialize(kernel.manifest, window.__INITIAL_STATE__.manifest, 'json')
         deserializer.deserialize(kernel.environment, window.__INITIAL_STATE__.environment, 'json')
 
-        buildContainer()
+        buildContainer({})
 
         deserializer.deserialize(kernel.container, window.__INITIAL_STATE__.container, 'json')
         kernel.container.init()

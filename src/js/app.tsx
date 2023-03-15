@@ -29,7 +29,7 @@ const bootstrap = (): void => {
         deserializer.deserialize(kernel.manifest, window.__INITIAL_STATE__.manifest, 'json')
         deserializer.deserialize(kernel.environment, window.__INITIAL_STATE__.environment, 'json')
 
-        buildContainer()
+        buildContainer({})
         kernel.container.init()
 
         const root = createRoot(element)

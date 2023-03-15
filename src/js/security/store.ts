@@ -1,5 +1,4 @@
-import * as Base from 'mobx-jwt'
-import { action } from 'mobx'
+import * as Base from '@code-202/jwt'
 
 export interface Informations extends Base.Informations {
 

@@ -60,7 +60,7 @@ const manifest = new Manifest(manifestData, environment.get('ENDPOINT')+'')
 
 const app = express()
 
-/*app.use(cookiesMiddleware())*/
+//app.use(cookiesMiddleware())
 
 const envCors = environment.get('CORS')
 app.use(cors({
@@ -76,7 +76,7 @@ const renderIndex = (req: any, res: any) => {
 
     setKernel(kernel, true)
 
-    buildContainer()
+    buildContainer({/*cookies: req.headers.cookie*/})
     container.init()
 
     /*
