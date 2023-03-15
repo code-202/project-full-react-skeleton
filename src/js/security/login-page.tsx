@@ -1,16 +1,19 @@
 import * as React from 'react'
 import { FormattedMessage } from 'react-intl'
-import { observer, inject } from 'mobx-react'
+import { observer } from 'mobx-react'
 import {
     Button,
-    Card, CardFooter, CardBody, CardHeader,
+    Card, CardBody,
     Form, FormGroup, Label, FormFeedback,
     Input, InputGroup, InputGroupText
 } from 'reactstrap'
 import { Store } from './store'
+import { getKernel } from '@code-202/kernel'
+import Icon from '@mdi/react'
+import { mdiAccount, mdiExclamationThick, mdiLoading, mdiLock, mdiLogin } from '@mdi/js'
 
 interface Props {
-    security?: Store
+
 }
 
 interface State {
@@ -22,9 +25,13 @@ interface State {
 }
 
 class LoginPage extends React.Component<Props, State> {
+    private security: Store
     protected loginInput: React.RefObject<HTMLInputElement>
+
     constructor (props: Props) {
         super(props)
+
+        this.security = getKernel().container.get('security') as Store
 
         this.state = {
             login: '',
@@ -44,9 +51,7 @@ class LoginPage extends React.Component<Props, State> {
     }
 
     render () {
-        const { security } = this.props
-
-        if (!security || security.connected) {
+        if (this.security.connected) {
             return null
         }
 
@@ -60,7 +65,7 @@ class LoginPage extends React.Component<Props, State> {
                              <FormGroup>
                                 <InputGroup>
                                     <InputGroupText>
-                                        <i className="mdi mdi-account"></i>
+                                        <Icon path={mdiAccount} size={1} />
                                     </InputGroupText>
                                     <Input
                                         type="text"
@@ -79,7 +84,7 @@ class LoginPage extends React.Component<Props, State> {
                             <FormGroup>
                                 <InputGroup>
                                     <InputGroupText>
-                                        <i className="mdi mdi-lock"></i>
+                                        <Icon path={mdiLock} size={1} />
                                     </InputGroupText>
                                     <Input
                                         type="password"
@@ -109,18 +114,18 @@ class LoginPage extends React.Component<Props, State> {
                                     type="submit"
                                     color="primary"
                                     className="text-white"
-                                    disabled={security.status === 'pending'}
+                                    disabled={this.security.status === 'pending'}
                                 >
-                                    { security.status === 'pending' ? (
-                                        <i className="mdi mdi-loading mdi-spin me-2"></i>
+                                    { this.security.status === 'pending' ? (
+                                        <Icon path={mdiLoading} size={1} spin={1} className="me-2" />
                                     ) : (
-                                        <i className="mdi mdi-login me-2"></i>
+                                        <Icon path={mdiLogin} size={1} className="me-2" />
                                     )}
                                     <FormattedMessage id="login.send" />
                                 </Button>
-                                { security.status === 'error' && (
+                                { this.security.status === 'error' && (
                                     <div className="text-danger">
-                                        <i className="mdi mdi-exclamation-thick me-2"></i>
+                                        <Icon path={mdiExclamationThick} size={1} className="me-2" />
                                         <FormattedMessage id="login.error" />
                                     </div>
                                 )}
@@ -156,23 +161,23 @@ class LoginPage extends React.Component<Props, State> {
         const s: State = Object.assign({}, this.state)
 
         if (s.login.length === 0) {
-            s.loginError = 'login.error.login_empty'
+            s.loginError = 'login.error.login.empty'
         } else {
             s.loginError = false
         }
 
         if (s.password.length === 0) {
-            s.passwordError = 'login.error.password_empty'
+            s.passwordError = 'login.error.password.empty'
         } else {
             s.passwordError = false
         }
 
         this.setState(s)
 
-        if (!s.loginError && !s.passwordError && this.props.security) {
-            this.props.security.login(s.login, s.password, s.rememberMe)
+        if (!s.loginError && !s.passwordError) {
+            this.security.login(s.login, s.password, s.rememberMe)
         }
     }
 }
 
-export default inject('security')(observer(LoginPage))
+export default observer(LoginPage)

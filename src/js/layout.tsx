@@ -1,5 +1,6 @@
 import * as React from 'react'
 import Demo from './demo/layout'
+//import { LoginPage } from './security'
 //import { Dialog, Launcher } from './cookie-consent'
 
 interface Props {}
@@ -13,6 +14,7 @@ export default class Layout extends React.PureComponent<Props, State> {
                 <Demo />
                 {/*<Launcher />
                 <Dialog />*/}
+                {/*<LoginPage />*/}
             </div>
         )
     }

@@ -102,7 +102,7 @@ module.exports = (env, argv) => {
                 chunkFilename: "css/[id].[chunkhash].css"
             }),
             new CleanWebpackPlugin({
-                cleanOnceBeforeBuildPatterns: ['js/**/*', 'css/**/*', '!manifest.json'],
+                cleanOnceBeforeBuildPatterns: ['js/**/*', 'css/**/*', 'translations/**', '!manifest.json'],
             }),
             new WebpackManifestPlugin(),
             new webpack.SourceMapDevToolPlugin({

@@ -1,0 +1,21 @@
+{
+    "login.remember_me": "Se souvenir de moi",
+    "login.forgot_password": "J'ai oublié mon mot de passe...",
+    "login.remember_password": "En fait je me souviens de mon mot de passe...",
+
+    "login.send": "Connexion",
+    "login.error": "Erreur inconnue... veuillez réessayer plus tard",
+    "login.error.too_short": "Trop court...",
+    "login.error.too_long": "Trop long...",
+    "login.error.login.empty": "Vous devez saisir un identifiant",
+    "login.error.password.empty": "Vous devez sasir un mot de passe",
+    "login.error.username_password": "Impossible de se connecter avec ce mot de passe",
+    "login.error.email.empty": "Vous devez saisir une adresse email",
+    "login.error.email.invalid": "Vous devez saisir une adresse email valide",
+    "login.error.token.empty": "Vous devez saisir le code reçu",
+    "login.error.token_by_email.ast_token.internal": "Votre adresse email semble poser problème, réessayer plus tard.",
+    "login.error.token_by_email.ast_token.user_auth_not_found": "Cette adresse email ne correspond à aucun compte de la plate-forme",
+    "login.error.token_by_email.ast_token.too_soon": "Demande trop rapprocher, attendez une minute pour recommencer",
+    "login.error.token_by_email.ast_token.expired": "Vous avez dépassé le délai, refaites une demande de code.",
+    "login.error.token_by_email.token.internal": "Impossible de se connecter avec ce code"
+}

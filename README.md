@@ -59,3 +59,11 @@ yarn add @code-202/cookie-consent
 ```
 
 After that, uncomment every line about cookie in server.(ssr.)ts, container.ts, layout.tsx and app.scss.
+
+### Security (with JWT)
+First thing to do to enable @code-202/jwt is to install the package
+```
+yarn add @code-202/jwt
+```
+
+After that, uncomment every line about security in container.ts and layout.tsx
