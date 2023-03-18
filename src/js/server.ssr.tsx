@@ -7,6 +7,7 @@ import * as cors from 'cors'
 import { config } from 'dotenv'
 import * as express from 'express'
 import * as fs from 'fs'
+import { encode } from 'js-base64'
 import * as path from 'path'
 import * as React from 'react'
 import * as ReactDOMServer from 'react-dom/server'
@@ -64,7 +65,7 @@ const app = express()
 
 const envCors = environment.get('CORS')
 app.use(cors({
-    origin: envCors ? envCors.split(',') : ''
+    origin: envCors ? envCors.split(',') : '*'
 }))
 
 const serializer = buildDefaultSerializer()
@@ -79,11 +80,9 @@ const renderIndex = (req: any, res: any) => {
     buildContainer({/*cookies: req.headers.cookie*/})
     container.init()
 
-    /*
-    if (req.universalCookies.get('api-token')) {
+    /*if (req.universalCookies.get('api-token')) {
         container.get('security').loadTokenFromString(req.universalCookies.get('api-token'))
-    }
-    */
+    }*/
 
     renderBootstrap(req).then((bootstrap) => {
 
@@ -101,7 +100,9 @@ const renderIndex = (req: any, res: any) => {
                 return res.status(500).send('Oops, better luck next time!')
             }
 
-            const datas = `<script>window.__INITIAL_STATE__ = { container: '${serializedContainer}', manifest: '${serializedManifest}', environment: '${serializedEnvironment}' }</script>`
+            const datas = `<script>window.__INITIAL_MANIFEST__ = '${encode(serializedManifest)}'</script>\n`
+                +`<script>window.__INITIAL_ENVIRONMENT__ = '${encode(serializedEnvironment)}'</script>\n`
+                +`<script>window.__INITIAL_CONTAINER__ = '${encode(serializedContainer)}'</script>`
 
             data = data.replace('<div id="app"></div>', `<div id="app">${bootstrap.html}</div>`)
             data = data.replace('<title></title>', helmet.title.toString())

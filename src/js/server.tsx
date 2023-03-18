@@ -1,5 +1,6 @@
 import { Environment, Manifest } from '@code-202/kernel'
 import { buildDefaultSerializer } from '@code-202/serializer'
+import { encode } from 'js-base64'
 import * as cors from 'cors'
 import { config } from 'dotenv'
 import * as express from 'express'
@@ -16,8 +17,9 @@ const manifest = new Manifest(manifestData, environment.get('ENDPOINT')+'')
 const app = express()
 
 const envCors = environment.get('CORS')
+
 app.use(cors({
-    origin: envCors ? envCors.split(',') : ''
+    origin: envCors ? envCors.split(',') : '*',
 }))
 
 const serializer = buildDefaultSerializer()
@@ -34,7 +36,8 @@ const renderIndex = (req: any, res: any) => {
             return res.status(500).send('Oops, better luck next time!')
         }
 
-        const datas = `<script>window.__INITIAL_STATE__ = { manifest: '${serializedManifest}', environment: '${serializedEnvironment}' }</script>`
+        const datas = `<script>window.__INITIAL_MANIFEST__ = '${encode(serializedManifest)}'</script>\n`
+            +`<script>window.__INITIAL_ENVIRONMENT__ = '${encode(serializedEnvironment)}'</script>`
 
         data = data.replace('<datas/>', datas)
 

@@ -3,20 +3,18 @@ require('../css/starter.scss')
 import { ResourcesLoader } from '@code-202/starter'
 import { Manifest } from '@code-202/kernel'
 import { buildDefaultDeserializer } from '@code-202/serializer'
+import { decode } from 'js-base64'
 
 declare global {
     interface Window {
-        __INITIAL_STATE__: {
-            manifest: string,
-            environment: string
-        }
+        __INITIAL_MANIFEST__: string
     }
 }
 
 const deserializer = buildDefaultDeserializer()
 
 const manifest = new Manifest({}, '')
-deserializer.deserialize(manifest, window.__INITIAL_STATE__.manifest, 'json')
+deserializer.deserialize(manifest, decode(window.__INITIAL_MANIFEST__), 'json')
 
 const ressources = {
     'css': manifest.get('app.css'),

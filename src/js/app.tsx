@@ -2,6 +2,7 @@ require('../css/app.scss')
 
 import { setKernel, createEmptyKernel } from '@code-202/kernel'
 import { buildDefaultDeserializer, Decoder } from '@code-202/serializer'
+import { decode } from 'js-base64'
 import * as React from 'react'
 import { createRoot } from 'react-dom/client'
 import { BrowserRouter } from 'react-router-dom'
@@ -10,10 +11,8 @@ import { buildContainer } from './container'
 
 declare global {
     interface Window {
-        __INITIAL_STATE__: {
-            manifest: string,
-            environment: string
-        }
+        __INITIAL_MANIFEST__: string
+        __INITIAL_ENVIRONMENT__: string
     }
 }
 
@@ -26,8 +25,8 @@ const bootstrap = (): void => {
 
         setKernel(kernel)
 
-        deserializer.deserialize(kernel.manifest, window.__INITIAL_STATE__.manifest, 'json')
-        deserializer.deserialize(kernel.environment, window.__INITIAL_STATE__.environment, 'json')
+        deserializer.deserialize(kernel.manifest, decode(window.__INITIAL_MANIFEST__), 'json')
+        deserializer.deserialize(kernel.environment, decode(window.__INITIAL_ENVIRONMENT__), 'json')
 
         buildContainer({})
         kernel.container.init()
