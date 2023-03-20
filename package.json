@@ -59,7 +59,7 @@
     "@code-202/starter": "^1.2.0",
     "@loadable/component": "^5.15.3",
     "@loadable/server": "^5.15.3",
-    "@mdi/js": "^7.1.96",
+    "@mdi/js": "^7.2.96",
     "@mdi/react": "^1.6.1",
     "bootstrap": "^5.2.3",
     "cors": "^2.8.5",
