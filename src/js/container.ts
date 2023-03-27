@@ -11,8 +11,8 @@ export const buildContainer = (req: { cookies?: string }): void => {
 
     const localeStore: LocaleStore = new LocaleStore(['fr'])
 
-    localeStore.addCatalog(new RemoteCatalog('fr', kernel.manifest.get('translations/app.fr.json', true), ['app']))
-    //localeStore.addCatalog(new RemoteCatalog('fr', kernel.manifest.get('translations/security.fr.json', true), ['security']))
+    localeStore.add(new RemoteCatalog('fr', kernel.manifest.get('translations/app.fr.json', true), ['app']))
+    //localeStore.add(new RemoteCatalog('fr', kernel.manifest.get('translations/security.fr.json', true), ['security']))
 
     kernel.container.onInit(() => {
         localeStore.changeLocale('fr').catch((err) => console.error(err))

@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { FormattedMessage } from 'react-intl'
+import { FormattedMessage } from '@code-202/intl'
 import { observer } from 'mobx-react'
 import {
     Button,

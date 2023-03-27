@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { configure } from 'mobx'
-import { MobxIntlProvider } from '@code-202/intl'
+import { CatalogAwaiter } from '@code-202/intl'
 import Layout from './layout'
 
 interface Props {}
@@ -12,9 +12,9 @@ configure({ enforceActions: 'observed' })
 export default class Bootstrap extends React.PureComponent<Props, State> {
     render () {
         return (
-            <MobxIntlProvider domain="app">
+            <CatalogAwaiter domain="app">
                 <Layout />
-            </MobxIntlProvider>
+            </CatalogAwaiter>
         )
     }
 }
