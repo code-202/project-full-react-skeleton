@@ -12,7 +12,7 @@ const environment = new Environment<'ENDPOINT' | 'CORS'>({}, config().parsed as 
 
 const manifestFile = process.env.MANIFEST as string
 const manifestData = JSON.parse(fs.readFileSync(manifestFile, 'utf8'))
-const manifest = new Manifest(manifestData, environment.get('ENDPOINT')+'')
+const manifest = new Manifest(manifestData, environment.get('ENDPOINT') + '')
 
 const app = express()
 
@@ -37,7 +37,7 @@ const renderIndex = (req: any, res: any) => {
         }
 
         const datas = `<script>window.__INITIAL_MANIFEST__ = '${encode(serializedManifest)}'</script>\n`
-            +`<script>window.__INITIAL_ENVIRONMENT__ = '${encode(serializedEnvironment)}'</script>`
+            + `<script>window.__INITIAL_ENVIRONMENT__ = '${encode(serializedEnvironment)}'</script>`
 
         data = data.replace('<datas/>', datas)
 
@@ -49,9 +49,9 @@ const renderIndex = (req: any, res: any) => {
 
 app.get('/', renderIndex);
 
-app.use('/static', express.static('./public', {fallthrough: false}))
+app.use('/static', express.static('./public', { fallthrough: false }))
 
-app.get('/*', renderIndex);
+app.get(/.*/, renderIndex);
 
 app.listen(PORT, () => {
     console.log(`Server is listening on port ${PORT}`)

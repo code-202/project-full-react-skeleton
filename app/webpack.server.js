@@ -89,8 +89,8 @@ module.exports = (env, argv) => {
         })],
         plugins: [
             new webpack.DefinePlugin({
-                'process.env.MANIFEST': JSON.stringify('/srv/public/'+dist+'/manifest.json'),
-                'process.env.LOADABLE_STATS': JSON.stringify('/srv/public/'+dist+'/loadable-stats.json'),
+                'process.env.MANIFEST': JSON.stringify('/srv/app/public/' + dist + '/manifest.json'),
+                'process.env.LOADABLE_STATS': JSON.stringify('/srv/app/public/' + dist + '/loadable-stats.json'),
             })
         ]
     };
