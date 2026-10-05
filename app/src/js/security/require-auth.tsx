@@ -54,7 +54,7 @@ class RequireAuth extends React.PureComponent<Props, State> {
     }
 
     private redirectIfNotConnected(): void {
-        if (!this.security.connected && !context.isNode()) {
+        if (!this.security.connected && getKernel().environment.context == 'browser') {
             setTimeout(() => {
                 if (this.navigator.navigate) {
                     this.navigator.navigate('/login', { state: { from: this.navigator.location }, replace: true })

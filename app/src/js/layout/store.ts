@@ -1,11 +1,11 @@
-import { CookiesManager } from "@code-202/cookie-consent"
+//import { CookiesManager } from "@code-202/cookie-consent"
 import { action, computed, makeObservable, observable } from "mobx"
-import { context } from "../context"
+import { getKernel } from "@code-202/kernel"
 
 export type Mode = 'light' | 'dark'
 export class Store {
     protected _mode: Mode = 'light'
-    protected _cookiesManager?: CookiesManager
+    //protected _cookiesManager?: CookiesManager
 
     constructor() {
         makeObservable<Store, '_mode'>(this, {
@@ -24,16 +24,16 @@ export class Store {
             this._mode = mode
         })()
 
-        if (!context.isNode()) {
+        if (getKernel().environment.context == 'browser') {
             const att = document.createAttribute('data-bs-theme')
             att.value = this._mode
             document.body.setAttributeNode(att)
         }
 
-        this._cookiesManager?.set('_theme', mode)
+        //this._cookiesManager?.set('_theme', mode)
     }
 
-    public enable(cookiesManager: CookiesManager): void {
+    /*public enable(cookiesManager: CookiesManager): void {
         this._cookiesManager = cookiesManager
 
         const cookie = this._cookiesManager?.get('_theme')
@@ -41,5 +41,5 @@ export class Store {
         if (cookie) {
             this.mode = cookie
         }
-    }
+    }*/
 }
