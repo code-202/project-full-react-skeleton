@@ -1,12 +1,11 @@
-require('../css/app.scss')
+import "../css/app.scss"
 
 import { setKernel, createEmptyKernel } from '@code-202/kernel'
 import { buildDefaultDeserializer } from '@code-202/serializer'
 import { loadableReady } from '@loadable/component'
 import { decode } from 'js-base64'
-import * as React from 'react'
 import { hydrateRoot } from 'react-dom/client'
-import { BrowserRouter } from 'react-router-dom'
+import { BrowserRouter } from 'react-router'
 import Bootstrap from './bootstrap'
 import { buildContainer } from './container'
 
@@ -38,7 +37,7 @@ const bootstrap = (): void => {
         hydrateRoot(
             element,
             <BrowserRouter>
-                <Bootstrap/>
+                <Bootstrap />
             </BrowserRouter>
         )
     }

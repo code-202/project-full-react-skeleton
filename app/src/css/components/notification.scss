@@ -1,0 +1,58 @@
+$notification-width: 350px;
+$notification-margin: 20px;
+$notification-speed: 200ms;
+
+.toast-container {
+    @extend .position-absolute;
+    @extend .m-1;
+    @extend .d-flex;
+    @extend .flex-column-reverse;
+
+    z-index: 2000;
+    bottom: 0;
+    right: 0;
+    width: $notification-width;
+
+    .toast {
+        width: $notification-width;
+    }
+
+    .notification {
+
+        .toast {
+            opacity: 1;
+        }
+
+        &.notification-appear .toast {
+            margin-left: $notification-width + $notification-margin;
+            max-height: 0;
+        }
+
+        &.notification-appear-active .toast {
+            margin-left: 0px;
+            max-height: 500px;
+            transition: $notification-speed;
+        }
+
+        &.notification-appear-done .toast {
+            margin-left: 0px;
+            max-height: 500px;
+        }
+
+        &.notification-exit .toast {
+            margin-left: 0px;
+            max-height: 500px;
+        }
+
+        &.notification-exit-active .toast {
+            margin-left: $notification-width + $notification-margin;
+            max-height: 0;
+            transition: $notification-speed;
+        }
+
+        &.notification-exit-done .toast {
+            margin-left: - $notification-width + $notification-margin;
+            max-height: 0;
+        }
+    }
+}

@@ -2,4 +2,4 @@ const excludes = [
     //react-mobx-loader/build/loader-indicator,
 ]
 
-module.exports = excludes
+export default excludes

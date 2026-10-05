@@ -1,19 +1,19 @@
 import * as React from 'react'
-import { Routes, Route, Outlet, Link } from 'react-router-dom'
+import { Routes, Route, Outlet, Link } from 'react-router'
 import loadable from '@loadable/component'
 import { LoadingScreen } from '@code-202/loader'
 
-const fallback = <LoadingScreen size="xl"/>
+const fallback = <LoadingScreen size="xl" />
 
-const Home = loadable(() => import('./home'), {fallback})
-const About = loadable(() => import('./about'), {fallback})
+const Home = loadable(() => import('./home'), { fallback })
+const About = loadable(() => import('./about'), { fallback })
 
-interface Props {}
+interface Props { }
 
-interface State {}
+interface State { }
 
 export default class Layout extends React.PureComponent<Props, State> {
-    render () {
+    render() {
         return (
             <Routes>
                 <Route path="/" element={<Layout2 />} >
@@ -26,22 +26,22 @@ export default class Layout extends React.PureComponent<Props, State> {
 }
 
 function Layout2() {
-  return (
-    <div>
-        <nav>
-            <ul>
-                <li>
-                    <Link to="/">Home</Link>
-                </li>
-                <li>
-                    <Link to="/about">About</Link>
-                </li>
-            </ul>
-        </nav>
+    return (
+        <div>
+            <nav>
+                <ul>
+                    <li>
+                        <Link to="/">Home</Link>
+                    </li>
+                    <li>
+                        <Link to="/about">About</Link>
+                    </li>
+                </ul>
+            </nav>
 
-        <hr />
+            <hr />
 
-        <Outlet />
-    </div>
-  );
+            <Outlet />
+        </div>
+    );
 }

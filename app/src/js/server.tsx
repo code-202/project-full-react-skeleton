@@ -1,14 +1,15 @@
 import { Environment, Manifest } from '@code-202/kernel'
 import { buildDefaultSerializer } from '@code-202/serializer'
 import { encode } from 'js-base64'
-import * as cors from 'cors'
+import cors from 'cors'
 import { config } from 'dotenv'
-import * as express from 'express'
+import { expand } from 'dotenv-expand'
+import express from 'express'
 import * as fs from 'fs'
 import * as path from 'path'
 const PORT = 3006
 
-const environment = new Environment<'ENDPOINT' | 'CORS'>({}, config().parsed as Record<string, string>)
+const environment = new Environment<'ENDPOINT' | 'CORS'>({}, expand(config()).parsed as Record<string, string>)
 
 const manifestFile = process.env.MANIFEST as string
 const manifestData = JSON.parse(fs.readFileSync(manifestFile, 'utf8'))

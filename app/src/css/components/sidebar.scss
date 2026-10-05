@@ -1,0 +1,219 @@
+$sidebar-width: 300px !default;
+$sidebar-minify-width: 56px !default;
+$sidebar-overlay-opacity: 0.5 !default;
+
+.sidebar {
+    position: relative;
+    z-index: 1000;
+
+    .sidebar-content {
+        width: $sidebar-width;
+    }
+
+    .sidebar-collapse {
+        display: inline-block;
+    }
+
+    .sidebar-trigger {
+        display: none;
+    }
+
+    .sidebar-overlay {
+        position: absolute;
+        top: 0;
+        z-index: -1;
+        display: none;
+    }
+}
+
+@include media-breakpoint-up(md) {
+    .sidebar {
+        &.sidebar-enter {
+            .sidebar-content {
+                width: $sidebar-minify-width;
+
+                .sidebar-item {
+                    display: none;
+                }
+
+                .sidebar-collapse {
+                    transform: rotate(0.5turn);
+                }
+            }
+        }
+
+        &.sidebar-enter-active {
+            .sidebar-content {
+                width: $sidebar-width;
+                transition: 500ms;
+
+                .sidebar-item {
+                    display: none;
+                }
+
+                .sidebar-collapse {
+                    transform: rotate(0);
+                    transition: 500ms;
+                }
+            }
+        }
+
+        &.sidebar-enter-done {
+            .sidebar-content {
+                width: $sidebar-width;
+            }
+        }
+
+        &.sidebar-exit {
+            .sidebar-content {
+                width: $sidebar-width;
+            }
+        }
+
+        &.sidebar-exit-active {
+            .sidebar-content {
+                width: $sidebar-minify-width;
+                transition: 500ms;
+
+                .sidebar-item {
+                    display: none;
+                }
+
+                .sidebar-collapse {
+                    transform: rotate(0.5turn);
+                    transition: 500ms;
+                }
+            }
+        }
+
+        &.sidebar-exit-done {
+            .sidebar-content {
+                width: $sidebar-minify-width;
+
+                .sidebar-item {
+                    display: none;
+                }
+
+                .sidebar-collapse {
+                    transform: rotate(0.5turn);
+                }
+            }
+        }
+    }
+}
+
+@include media-breakpoint-down(md) {
+    .sidebar {
+        position: absolute;
+        z-index: 1000;
+        left: 0;
+
+        .sidebar-content {
+            width: $sidebar-width;
+        }
+
+        .sidebar-trigger {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            display: block;
+            opacity: 0;
+
+            .sidebar-trigger-wrapper {
+                margin-left: 100%;
+            }
+        }
+
+        .sidebar-overlay {
+            display: block;
+            left: $sidebar-width;
+            opacity: $sidebar-overlay-opacity;
+        }
+
+        &.sidebar-enter {
+            left: -$sidebar-width;
+            margin-right: -$sidebar-width;
+
+            .sidebar-overlay {
+                opacity: 0;
+            }
+
+            .sidebar-trigger {
+                opacity: 1;
+            }
+        }
+
+        &.sidebar-enter-active {
+            left: 0;
+            margin-right: 0;
+            transition: 500ms;
+
+            .sidebar-overlay {
+                opacity: $sidebar-overlay-opacity;
+                transition: 500ms;
+            }
+
+            .sidebar-trigger {
+                opacity: 0;
+                transition: 500ms;
+            }
+        }
+
+        &.sidebar-enter-done {
+            left: 0;
+            margin-right: 0;
+
+            .sidebar-overlay {
+                opacity: $sidebar-overlay-opacity;
+            }
+
+            .sidebar-trigger {
+                opacity: 0;
+                transition: 500ms;
+            }
+        }
+
+        &.sidebar-exit {
+            left: 0;
+            margin-right: 0;
+
+            .sidebar-overlay {
+                opacity: $sidebar-overlay-opacity;
+            }
+
+            .sidebar-trigger {
+                opacity: 0;
+            }
+        }
+
+        &.sidebar-exit-active {
+            left: -$sidebar-width;
+            margin-right: -$sidebar-width;
+            transition: 500ms;
+
+            .sidebar-overlay {
+                opacity: 0;
+                transition: 500ms;
+            }
+
+            .sidebar-trigger {
+                opacity: 1;
+                transition: 500ms;
+            }
+        }
+
+        &.sidebar-exit-done {
+            left: -$sidebar-width;
+            margin-right: -$sidebar-width;
+
+            .sidebar-overlay {
+                display: none;
+                opacity: 0;
+            }
+
+            .sidebar-trigger {
+                opacity: 1;
+            }
+        }
+    }
+}

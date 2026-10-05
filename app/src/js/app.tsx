@@ -1,11 +1,10 @@
-require('../css/app.scss')
+import "../css/app.scss"
 
 import { setKernel, createEmptyKernel } from '@code-202/kernel'
-import { buildDefaultDeserializer, Decoder } from '@code-202/serializer'
+import { buildDefaultDeserializer } from '@code-202/serializer'
 import { decode } from 'js-base64'
-import * as React from 'react'
 import { createRoot } from 'react-dom/client'
-import { BrowserRouter } from 'react-router-dom'
+import { BrowserRouter } from 'react-router'
 import Bootstrap from './bootstrap'
 import { buildContainer } from './container'
 
@@ -33,8 +32,8 @@ const bootstrap = (): void => {
 
         const root = createRoot(element)
         root.render(<BrowserRouter>
-                <Bootstrap/>
-            </BrowserRouter>
+            <Bootstrap />
+        </BrowserRouter>
         )
     }
 }

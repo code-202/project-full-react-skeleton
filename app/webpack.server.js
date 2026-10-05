@@ -1,15 +1,15 @@
-const path = require('path');
-const webpack = require('webpack');
-const nodeExternals = require('webpack-node-externals');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const overrides = require('./override');
-const excludes = require('./exclude');
+import webpack from 'webpack'
+import path from 'node:path'
+import MiniCssExtractPlugin from 'mini-css-extract-plugin'
+import TsconfigPathsPlugin from 'tsconfig-paths-webpack-plugin'
+import overrides from './override.js'
+import excludes from './exclude.js'
+import nodeExternals from 'webpack-node-externals'
+
+const ssr = true
 const target = 'node'
 
-const ssr = false
-
-module.exports = (env, argv) => {
-
+export default (env, argv) => {
     let dist = 'dev'
 
     if (argv.mode === 'production') {
@@ -30,7 +30,8 @@ module.exports = (env, argv) => {
         resolve: {
             // Add '.ts' and '.tsx' as resolvable extensions.
             extensions: [".ts", ".tsx", ".js"],
-            alias: Object.assign({}, overrides)
+            alias: Object.assign({}, overrides),
+            plugins: [new TsconfigPathsPlugin({})]
         },
 
         module: {

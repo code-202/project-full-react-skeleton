@@ -3,16 +3,16 @@ import { Container, Environment, Kernel, Manifest, setKernel } from '@code-202/k
 import { Manager } from '@code-202/loader'
 import { buildDefaultSerializer } from '@code-202/serializer'
 import { ChunkExtractor } from '@loadable/server'
-import * as cors from 'cors'
+import cors from 'cors'
 import { config } from 'dotenv'
-import * as express from 'express'
+import { expand } from 'dotenv-expand'
+import express from 'express'
 import * as fs from 'fs'
 import { encode } from 'js-base64'
 import * as path from 'path'
-import * as React from 'react'
 import * as ReactDOMServer from 'react-dom/server'
 import { Helmet } from 'react-helmet'
-import { StaticRouter } from 'react-router-dom/server'
+import { StaticRouter } from 'react-router'
 //import cookiesMiddleware from 'universal-cookie-express'
 import Bootstrap from './bootstrap'
 import { buildContainer } from './container'
@@ -23,26 +23,26 @@ const PORT = 3006
 
 Manager.Manager.contentStrategy = 'wait'
 
-const renderBootstrap = (req: any, maxRendition: number = 5): Promise<{html: string, extractor: ChunkExtractor}> => {
+const renderBootstrap = (req: any, maxRendition: number = 5): Promise<{ html: string, extractor: ChunkExtractor }> => {
     return new Promise((resolve, reject) => {
         const extractor = new ChunkExtractor({
             statsFile,
             entrypoints: ['app'],
         })
 
-        const bootstrap =  ReactDOMServer.renderToString(
+        const bootstrap = ReactDOMServer.renderToString(
             extractor.collectChunks(
-            <StaticRouter
-                location={req.url}
-            >
-                <Bootstrap/>
-            </StaticRouter>
+                <StaticRouter
+                    location={req.url}
+                >
+                    <Bootstrap />
+                </StaticRouter>
             )
         )
 
         Agent.waitForAll().then((nbRequests: number) => {
             if (maxRendition === 0 || nbRequests === 0) {
-                resolve({ html: bootstrap, extractor: extractor})
+                resolve({ html: bootstrap, extractor: extractor })
                 return
             }
 
@@ -53,11 +53,11 @@ const renderBootstrap = (req: any, maxRendition: number = 5): Promise<{html: str
     })
 }
 
-const environment = new Environment<'ENDPOINT' | 'CORS'>({}, config().parsed as Record<string, string>)
+const environment = new Environment<'ENDPOINT' | 'CORS'>({}, expand(config()).parsed as Record<string, string>)
 
 const manifestFile = process.env.MANIFEST as string
 const manifestData = JSON.parse(fs.readFileSync(manifestFile, 'utf8'))
-const manifest = new Manifest(manifestData, environment.get('ENDPOINT')+'')
+const manifest = new Manifest(manifestData, environment.get('ENDPOINT') + '')
 
 const app = express()
 
@@ -77,7 +77,7 @@ const renderIndex = (req: any, res: any) => {
 
     setKernel(kernel, true)
 
-    buildContainer({/*cookies: req.headers.cookie*/})
+    buildContainer({/*cookies: req.headers.cookie*/ })
     container.init()
 
     /*if (req.universalCookies.get('api-token')) {
@@ -101,8 +101,8 @@ const renderIndex = (req: any, res: any) => {
             }
 
             const datas = `<script>window.__INITIAL_MANIFEST__ = '${encode(serializedManifest)}'</script>\n`
-                +`<script>window.__INITIAL_ENVIRONMENT__ = '${encode(serializedEnvironment)}'</script>\n`
-                +`<script>window.__INITIAL_CONTAINER__ = '${encode(serializedContainer)}'</script>`
+                + `<script>window.__INITIAL_ENVIRONMENT__ = '${encode(serializedEnvironment)}'</script>\n`
+                + `<script>window.__INITIAL_CONTAINER__ = '${encode(serializedContainer)}'</script>`
 
             data = data.replace('<div id="app"></div>', `<div id="app">${bootstrap.html}</div>`)
             data = data.replace('<title></title>', helmet.title.toString())
@@ -110,6 +110,7 @@ const renderIndex = (req: any, res: any) => {
             data = data.replace('<links/>', helmet.link.toString() + bootstrap.extractor.getStyleTags())
             data = data.replace('<scripts/>', bootstrap.extractor.getScriptTags())
             data = data.replace('<datas/>', datas)
+            data = data.replace('%theme%', container.get('layout').mode)
 
             return res.send(
                 data
@@ -120,9 +121,9 @@ const renderIndex = (req: any, res: any) => {
 
 app.get('/', renderIndex);
 
-app.use('/static', express.static('./public', {fallthrough: false}))
+app.use('/static', express.static('./public', { fallthrough: false }))
 
-app.get('/*', renderIndex);
+app.get(/.*/, renderIndex);
 
 app.listen(PORT, () => {
     console.log(`Server is listening on port ${PORT}`)

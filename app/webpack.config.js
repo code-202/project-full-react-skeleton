@@ -1,17 +1,19 @@
-const webpack = require('webpack');
-const path = require('path');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const { WebpackManifestPlugin } = require('webpack-manifest-plugin');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const HtmlWebpackSkipAssetsPlugin = require('html-webpack-skip-assets-plugin').HtmlWebpackSkipAssetsPlugin;
-const overrides = require('./override');
-const LoadablePlugin = require('@loadable/webpack-plugin');
+import webpack from 'webpack'
+import path from 'node:path'
+import MiniCssExtractPlugin from 'mini-css-extract-plugin'
+import { CleanWebpackPlugin } from 'clean-webpack-plugin'
+import { WebpackManifestPlugin } from 'webpack-manifest-plugin'
+import CopyWebpackPlugin from 'copy-webpack-plugin'
+import HtmlWebpackPlugin from 'html-webpack-plugin'
+import { HtmlWebpackSkipAssetsPlugin } from 'html-webpack-skip-assets-plugin'
+import TsconfigPathsPlugin from 'tsconfig-paths-webpack-plugin'
+import overrides from './override.js'
+import LoadablePlugin from '@loadable/webpack-plugin'
 
-const ssr = false
+const __dirname = import.meta.dirname
+const ssr = true
 
-module.exports = (env, argv) => {
+export default (env, argv) => {
 
     let dist = 'dev'
 
@@ -20,7 +22,7 @@ module.exports = (env, argv) => {
     }
 
     return {
-        mode: "development",
+        mode: argv.mode,
 
         entry: ssr ? {
             app: './src/js/app.ssr.tsx',
@@ -31,17 +33,18 @@ module.exports = (env, argv) => {
 
         output: {
             // options related to how webpack emits results
-            path: path.resolve(__dirname, "public/"+dist), // string
+            path: path.resolve(__dirname, "public/" + dist), // string
             filename: "js/[name].[chunkhash].js",
             chunkFilename: 'js/[name].[chunkhash].bundle.js',
             libraryTarget: "umd", // universal module definition
-            publicPath: '/static/'+dist+'/'
+            publicPath: '/static/' + dist + '/'
         },
 
         resolve: {
             // Add '.ts' and '.tsx' as resolvable extensions.
             extensions: [".ts", ".tsx", ".js"],
-            alias: Object.assign({}, overrides)
+            alias: Object.assign({}, overrides),
+            plugins: [new TsconfigPathsPlugin({})]
         },
 
 
@@ -74,9 +77,17 @@ module.exports = (env, argv) => {
                         // Creates `style` nodes from JS strings
                         //'style-loader',
                         // Translates CSS into CommonJS
-                        { loader: 'css-loader', options: { url: false, sourceMap: true } },
+                        { loader: 'css-loader', options: { url: false, sourceMap: false } },
                         // Compiles Sass to CSS
-                        'sass-loader',
+                        {
+                            loader: 'sass-loader',
+                            options: {
+                                sassOptions: {
+                                    quietDeps: true,
+                                    silenceDeprecations: ['mixed-decls', 'color-functions', 'global-builtin', 'import', 'if-function', 'legacy-js-api'],
+                                },
+                            },
+                        },
                     ],
                 }
             ]
@@ -88,11 +99,6 @@ module.exports = (env, argv) => {
         // dependencies, which allows browsers to cache those libraries between builds.
         performance: {
             hints: false
-        },
-
-        externals: {
-            "react": "React",
-            "react-dom": "ReactDOM"
         },
 
         plugins: [
@@ -107,30 +113,24 @@ module.exports = (env, argv) => {
             new WebpackManifestPlugin(),
             new webpack.SourceMapDevToolPlugin({
                 filename: '[file].map',
-                publicPath: '/static/'+dist+'/'
+                publicPath: '/static/' + dist + '/'
             }),
             new CopyWebpackPlugin({
                 patterns: [
-                    {from:'src/translations', to:'translations/[name].[hash][ext]'},
+                    { from: 'src/translations', to: 'translations/[name].[chunkhash][ext]', force: true },
                 ]
             }),
             new HtmlWebpackPlugin({
                 template: `templates/index${ssr ? '.ssr' : ''}.html`,
                 filename: '../index.html',
-                templateParameters: {
-                    'REACT_URL': argv.mode === 'production' ? '/node_modules/react/umd/react.production.min.js' : '/node_modules/react/umd/react.development.js',
-                    'REACTDOM_URL': argv.mode === 'production' ? '/node_modules/react-dom/umd/react-dom.production.min.js' : '/node_modules/react-dom/umd/react-dom.development.js',
-                },
             }),
             new HtmlWebpackSkipAssetsPlugin({
                 excludeAssets: [/app.*/],
             }),
             new webpack.DefinePlugin({
                 'process.env.ENDPOINT': JSON.stringify(''),
-                'process.env.MANIFEST': JSON.stringify(path.resolve(__dirname, 'public/'+dist+'/manifest.json')),
+                'process.env.MANIFEST': JSON.stringify(path.resolve(__dirname, 'public/' + dist + '/manifest.json')),
                 'process.env.API_ENDPOINT': process.env.API_ENDPOINT,
-                'process.env.REACT_URL': JSON.stringify(argv.mode === 'production' ? '/node_modules/react/umd/react.production.min.js' : '/node_modules/react/umd/react.development.js'),
-                'process.env.REACTDOM_URL': JSON.stringify(argv.mode === 'production' ? '/node_modules/react-dom/umd/react-dom.production.min.js' : '/node_modules/react-dom/umd/react-dom.development.js'),
             })
         ]
     }

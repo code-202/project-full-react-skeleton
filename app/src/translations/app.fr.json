@@ -1,4 +1,26 @@
 {
-    "app.welcome": "Bienvenue !",
-    "app.about": "A propos"
+    "app.title": "Welcome !",
+    "app.404": "Page non trouvée !",
+    "app.login": "Connexion",
+    "app.logout": "Déconnexion",
+    "app.sidebar.hide": "Réduire le menu",
+    "app.theme.light": "Mode clair",
+    "app.theme.dark": "Mode sombre",
+    "app.cookie-consent.title": "Votre choix",
+    "app.cookie-consent.description": "Ce site utilise des cookies afin de vous faire profiter d'une navigation optimale.",
+    "app.cookie-consent.description-new": "Nous avons ajouter de nouveaux services depuis votre dernière visite.",
+    "app.cookie-consent.accept_all": "Tout accepter",
+    "app.cookie-consent.decline_all": "Tout refuser",
+    "app.cookie-consent.accept": "Accepter",
+    "app.cookie-consent.decline": "Refuser",
+    "app.cookie-consent.customize": "Choisir...",
+    "app.cookie-consent.close": "Fermer",
+    "app.cookie-consent.required": "Obligatoire",
+    "app.cookie-consent.types.main": "Général",
+    "app.cookie-consent.types.ergonomics": "Affichage",
+    "app.cookie-consent.type.main": "Général",
+    "app.cookie-consent.type.main.cookie-consent": "Consentement par cookie (vos paramètres d'acceptation)",
+    "app.cookie-consent.type.main.security": "Authentification",
+    "app.cookie-consent.type.ergonomics": "Ergonomie",
+    "app.cookie-consent.type.ergonomics.theme": "Thème (mode sombre ou clair)"
 }
