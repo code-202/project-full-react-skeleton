@@ -24,8 +24,8 @@ app.use(cors({
 }))
 
 const serializer = buildDefaultSerializer()
-const serializedManifest = serializer.serialize(manifest, 'json')
-const serializedEnvironment = serializer.serialize(environment, 'json')
+const serializedManifest = serializer.serialize(manifest, 'json', { endpoint: environment.get('ENDPOINT', 'browser') })
+const serializedEnvironment = serializer.serialize(environment, 'json', { browser: true })
 
 const renderIndex = (req: any, res: any) => {
 

@@ -89,8 +89,8 @@ const renderIndex = (req: any, res: any) => {
         const helmet = Helmet.renderStatic()
 
         const serializedContainer = serializer.serialize(kernel.container, 'json')
-        const serializedManifest = serializer.serialize(kernel.manifest, 'json')
-        const serializedEnvironment = serializer.serialize(kernel.environment, 'json')
+        const serializedManifest = serializer.serialize(kernel.manifest, 'json', { endpoint: environment.get('ENDPOINT', 'browser') })
+        const serializedEnvironment = serializer.serialize(kernel.environment, 'json', { browser: true })
 
         const indexFile = path.resolve('./public/index.html')
 
