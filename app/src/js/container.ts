@@ -1,10 +1,10 @@
 import { LocaleStore, RemoteCatalog } from '@code-202/intl'
 import { Kernel, getKernel } from '@code-202/kernel'
-//import * as Security from './security'
-//import { TokenVerifier, KeyProvider, KeyBuilder } from '@code-202/jwt'
+import * as Security from './security'
+import { TokenVerifier, KeyProvider, KeyBuilder } from '@code-202/jwt'
 //import * as moment from 'moment'
 //import 'moment-timezone'
-//import { CookiesManager, Store as CookieConsentStore } from '@code-202/cookie-consent'
+import { CookiesManager, Store as CookieConsentStore } from '@code-202/cookie-consent'
 import * as Navbar from './navbar'
 import * as Navigation from './navigation'
 import * as Layout from './layout'
@@ -20,7 +20,7 @@ export const buildContainer = (req: { cookies?: string }): void => {
     const localeStore: LocaleStore = new LocaleStore(['fr'])
 
     localeStore.add(new RemoteCatalog('fr', kernel.manifest.get('translations/app.fr.json', true), ['app']))
-    //localeStore.add(new RemoteCatalog('fr', kernel.manifest.get('translations/security.fr.json', true), ['security']))
+    localeStore.add(new RemoteCatalog('fr', kernel.manifest.get('translations/security.fr.json', true), ['security']))
 
     kernel.container.onInit(() => {
         localeStore.changeLocale('fr').catch((err) => console.error(err))
@@ -33,9 +33,9 @@ export const buildContainer = (req: { cookies?: string }): void => {
     //moment.locale('fr')
     //moment.tz.setDefault('Europe/Paris')
 
-    //const securityStore = configureSecurity(kernel)
+    const securityStore = configureSecurity(kernel)
 
-    //configureCookieConsent(kernel, req.cookies)
+    configureCookieConsent(kernel, req.cookies)
 
     kernel.container.add('navbar', new Navbar.Store.Store())
     kernel.container.add('navigator', new Navigation.Navigator())
@@ -43,10 +43,10 @@ export const buildContainer = (req: { cookies?: string }): void => {
     const notificationStore = new NotificationStore.Store()
     kernel.container.add('notification', notificationStore)
 
-    //kernel.container.add('access-denied-listener', new Security.AccessDeniedListener.Listener(securityStore, eventDispatcher))
+    kernel.container.add('access-denied-listener', new Security.AccessDeniedListener.Listener(securityStore, eventDispatcher))
 }
 
-/*const configureSecurity = (kernel: Kernel): Security.Store.Store => {
+const configureSecurity = (kernel: Kernel): Security.Store.Store => {
     const securityStore = new Security.Store.Store(
         new TokenVerifier(new KeyProvider(new KeyBuilder.SPKIBuilder(kernel.environment.get('PUBLIC_KEY') as string, 'RS256'))),
         {
@@ -65,9 +65,9 @@ export const buildContainer = (req: { cookies?: string }): void => {
     kernel.container.add('security', securityStore)
 
     return securityStore
-}*/
+}
 
-/*const configureCookieConsent = (kernel: Kernel, cookies?: string) => {
+const configureCookieConsent = (kernel: Kernel, cookies?: string) => {
     const cookieConsentStore = new CookieConsentStore({ cookie: { secure: false }, customizable: true }, cookies)
 
     cookieConsentStore.addService({
@@ -100,4 +100,4 @@ export const buildContainer = (req: { cookies?: string }): void => {
     kernel.container.onInit(() => {
         cookieConsentStore.initialize()
     })
-}*/
+}

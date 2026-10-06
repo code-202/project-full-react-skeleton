@@ -59,7 +59,9 @@
     },
     "dependencies": {
         "@code-202/agent": "^4.5.0",
+        "@code-202/cookie-consent": "^5.1.1",
         "@code-202/intl": "^4.0.2",
+        "@code-202/jwt": "^3.0.1",
         "@code-202/kernel": "^2.2.3",
         "@code-202/loader": "^3.0.0",
         "@code-202/serializer": "^1.1.1",
@@ -74,6 +76,7 @@
         "dotenv-expand": "^1000.0.0",
         "eventemitter3": "^5.0.4",
         "express": "^5.2.1",
+        "formik": "^2.4.9",
         "js-base64": "^3.7.5",
         "mobx": "^7.0.4",
         "mobx-react": "^10.0.2",
@@ -84,6 +87,7 @@
         "react-transition-group": "^4.4.5",
         "reactstrap": "^9.1.6",
         "universal-cookie-express": "^8.1.2",
-        "uuid": "^14.0.2"
+        "uuid": "^14.0.2",
+        "yup": "^1.7.1"
     }
 }

@@ -1,7 +1,7 @@
 import { observer } from 'mobx-react'
 import * as React from 'react'
 import { Outlet } from 'react-router'
-//import { Dialog } from '../cookie-consent'
+import { Dialog } from '../cookie-consent'
 import { Component as Navbar } from '../navbar'
 import * as Notification from '@app/notification'
 
@@ -21,7 +21,7 @@ class Component extends React.PureComponent<Props, State> {
                     <Outlet />
                 </div>
 
-                {/*<Dialog />*/}
+                <Dialog />
             </div>
         )
     }

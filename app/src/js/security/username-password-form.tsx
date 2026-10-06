@@ -34,8 +34,8 @@ const SigninSchema = Yup.object().shape({
 
 export class UsernamePasswordForm extends React.Component<Props, State> {
     private security: Store
-    protected loginInput: React.RefObject<HTMLInputElement>
-    constructor (props: Props) {
+    protected loginInput: React.RefObject<HTMLInputElement | null>
+    constructor(props: Props) {
         super(props)
 
         this.state = {
@@ -53,7 +53,7 @@ export class UsernamePasswordForm extends React.Component<Props, State> {
         }
     }
 
-    render (): React.ReactNode {
+    render(): React.ReactNode {
         return (
             <Formik
                 initialValues={{ login: '', password: '', rememberMe: false }}
@@ -69,7 +69,7 @@ export class UsernamePasswordForm extends React.Component<Props, State> {
                                 this.props.onLogin()
                             }
                         })
-                        .catch ((reason: any) => {
+                        .catch((reason: any) => {
                             this.setState({
                                 hasError: true
                             })
@@ -79,7 +79,7 @@ export class UsernamePasswordForm extends React.Component<Props, State> {
             >
                 {props => (
                     <Form onSubmit={props.handleSubmit}>
-                         <FormGroup>
+                        <FormGroup>
                             <InputGroup>
                                 <InputGroupText>
                                     <Icon path={mdiAccount} size={1} />
@@ -92,8 +92,8 @@ export class UsernamePasswordForm extends React.Component<Props, State> {
                                     value={props.values.login}
                                     invalid={props.errors.login !== undefined && props.touched.login}
                                     innerRef={this.loginInput}
-                                    />
-                                { props.errors.login !== undefined && props.touched.login && (
+                                />
+                                {props.errors.login !== undefined && props.touched.login && (
                                     <FormFeedback>
                                         <FormattedMessage id={props.errors.login} />
                                     </FormFeedback>
@@ -112,8 +112,8 @@ export class UsernamePasswordForm extends React.Component<Props, State> {
                                     onBlur={props.handleBlur}
                                     value={props.values.password}
                                     invalid={props.errors.password !== undefined && props.touched.password}
-                                    />
-                                { props.errors.password !== undefined && props.touched.password && (
+                                />
+                                {props.errors.password !== undefined && props.touched.password && (
                                     <FormFeedback>
                                         <FormattedMessage id={props.errors.password} />
                                     </FormFeedback>
@@ -137,14 +137,14 @@ export class UsernamePasswordForm extends React.Component<Props, State> {
                                 className="text-white ml-5"
                                 disabled={props.isSubmitting}
                             >
-                                { props.isSubmitting ? (
+                                {props.isSubmitting ? (
                                     <Icon path={mdiLoading} spin={true} size={1} className="me-2" />
                                 ) : (
                                     <Icon path={mdiLogin} size={1} className="me-2" />
                                 )}
                                 <FormattedMessage id="login.send" />
                             </Button>
-                            { this.state.hasError && (
+                            {this.state.hasError && (
                                 <div className="text-danger">
                                     <Icon path={mdiExclamationThick} size={1} className="me-2" />
                                     <FormattedMessage id="login.error.username_password" />

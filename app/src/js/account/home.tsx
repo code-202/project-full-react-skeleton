@@ -1,9 +1,8 @@
 import * as React from 'react'
 import { FormattedMessage } from '@code-202/intl'
 import Icon from '@mdi/react';
-import { mdiArrowRightBoldCircle, mdiExclamationThick } from '@mdi/js';
+import { mdiExclamationThick } from '@mdi/js';
 import { DynamicModule } from '@app/component';
-import { Link } from 'react-router';
 
 interface Props { }
 
@@ -12,20 +11,17 @@ interface State { }
 export default class Home extends React.PureComponent<Props, State> {
     render(): React.ReactNode {
         return (
-            <DynamicModule name="demo">
+            <DynamicModule name="account">
                 <>
                     <div className="alert alert-success text-center">
                         <h1>
                             <Icon path={mdiExclamationThick} spin={-2} size={1} className="me-2" />
 
-                            <FormattedMessage id="app.welcome" />
+                            <FormattedMessage id="account.welcome" />
 
                             <Icon path={mdiExclamationThick} spin={2} size={1} className="ms-2" />
                         </h1>
                     </div>
-                    <Link to="/demo/about">
-                        <Icon path={mdiArrowRightBoldCircle} size={1} />
-                    </Link>
                 </>
             </DynamicModule>
         )

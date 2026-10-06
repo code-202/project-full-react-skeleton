@@ -16,9 +16,9 @@ export default class Layout extends React.PureComponent<Props, State> {
     render() {
         return (
             <Routes>
-                <Route path="/" element={<Layout2 />} >
-                    <Route path="/" element={<Home />} />
-                    <Route path="/about" element={<About />} />
+                <Route element={<Layout2 />} >
+                    <Route index element={<Home />} />
+                    <Route path="about" element={<About />} />
                 </Route>
             </Routes>
         )
@@ -31,10 +31,10 @@ function Layout2() {
             <nav>
                 <ul>
                     <li>
-                        <Link to="/">Home</Link>
+                        <Link to="/demo">Home</Link>
                     </li>
                     <li>
-                        <Link to="/about">About</Link>
+                        <Link to="/demo/about">About</Link>
                     </li>
                 </ul>
             </nav>

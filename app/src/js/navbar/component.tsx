@@ -21,13 +21,13 @@ interface State { }
 
 class Component extends React.PureComponent<Props, State> {
     protected store: Store
-    //protected security: Security.Store.Store
+    protected security: Security.Store.Store
 
     constructor(props: Props) {
         super(props)
 
         this.store = getKernel().container.get('navbar') as Store
-        //this.security = getKernel().container.get('security') as Security.Store.Store
+        this.security = getKernel().container.get('security') as Security.Store.Store
     }
 
     render(): React.ReactNode {
@@ -68,7 +68,7 @@ class Component extends React.PureComponent<Props, State> {
             </NavItem>
         )
 
-        /*links.push(
+        links.push(
             <NavItem key={0}>
                 <NavLink to="/account" className="nav-link">
                     <Icon path={mdiAccount} className="me-2" size={1} />
@@ -95,13 +95,13 @@ class Component extends React.PureComponent<Props, State> {
                     </NavLink>
                 </NavItem>
             )
-        }*/
+        }
 
-        /*links.push(
+        links.push(
             <NavItem key={-2}>
                 <Launcher className="btn btn-primary" alwaysShown />
             </NavItem>
-        )*/
+        )
 
         links.push(
             <NavItem key={-3}>

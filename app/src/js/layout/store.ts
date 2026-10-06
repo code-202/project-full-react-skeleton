@@ -5,7 +5,7 @@ import { getKernel } from "@code-202/kernel"
 export type Mode = 'light' | 'dark'
 export class Store {
     protected _mode: Mode = 'light'
-    //protected _cookiesManager?: CookiesManager
+    protected _cookiesManager?: CookiesManager
 
     constructor() {
         makeObservable<Store, '_mode'>(this, {
@@ -30,10 +30,10 @@ export class Store {
             document.body.setAttributeNode(att)
         }
 
-        //this._cookiesManager?.set('_theme', mode)
+        this._cookiesManager?.set('_theme', mode)
     }
 
-    /*public enable(cookiesManager: CookiesManager): void {
+    public enable(cookiesManager: CookiesManager): void {
         this._cookiesManager = cookiesManager
 
         const cookie = this._cookiesManager?.get('_theme')
@@ -41,5 +41,5 @@ export class Store {
         if (cookie) {
             this.mode = cookie
         }
-    }*/
+    }
 }

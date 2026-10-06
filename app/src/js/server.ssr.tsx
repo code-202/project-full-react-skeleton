@@ -13,7 +13,7 @@ import * as path from 'path'
 import * as ReactDOMServer from 'react-dom/server'
 import { Helmet } from 'react-helmet'
 import { StaticRouter } from 'react-router'
-//import cookiesMiddleware from 'universal-cookie-express'
+import cookiesMiddleware from 'universal-cookie-express'
 import Bootstrap from './bootstrap'
 import { buildContainer } from './container'
 
@@ -61,7 +61,7 @@ const manifest = new Manifest(manifestData, environment.get('ENDPOINT') + '')
 
 const app = express()
 
-//app.use(cookiesMiddleware())
+app.use(cookiesMiddleware())
 
 const envCors = environment.get('CORS')
 app.use(cors({
@@ -77,12 +77,12 @@ const renderIndex = (req: any, res: any) => {
 
     setKernel(kernel, true)
 
-    buildContainer({/*cookies: req.headers.cookie*/ })
+    buildContainer({ cookies: req.headers.cookie })
     container.init()
 
-    /*if (req.universalCookies.get('api-token')) {
+    if (req.universalCookies.get('api-token')) {
         container.get('security').loadTokenFromString(req.universalCookies.get('api-token'))
-    }*/
+    }
 
     renderBootstrap(req).then((bootstrap) => {
 
