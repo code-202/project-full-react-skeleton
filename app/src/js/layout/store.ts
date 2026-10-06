@@ -1,4 +1,4 @@
-//import { CookiesManager } from "@code-202/cookie-consent"
+import { CookiesManager } from "@code-202/cookie-consent"
 import { action, computed, makeObservable, observable } from "mobx"
 import { getKernel } from "@code-202/kernel"
 
@@ -30,7 +30,7 @@ export class Store {
             document.body.setAttributeNode(att)
         }
 
-        this._cookiesManager?.set('_theme', mode)
+        this._cookiesManager?.set('_theme', mode, { path: '/' })
     }
 
     public enable(cookiesManager: CookiesManager): void {
